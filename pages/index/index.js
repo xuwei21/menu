@@ -1,19 +1,21 @@
 // pages/index/index.js
 Page({
     data: {
+      scrollHeight: 0, // 滚动区域高度
+      
       // 轮播图数据
       banners: [
         {
           id: 1,
-          image: "../../images/1.jpg"
+          image: "https://pica.zhimg.com/v2-05450e2f09160a7d48f471cdebbb3dca_r.jpg" // 修改为实际存在的图片路径
         },
         {
           id: 2, 
-          image: "../../images/2.jpg"
+          image: "https://pic4.zhimg.com/v2-08cab05d462bd5a580adcee4526bfc37_r.jpg"
         },
         {
           id: 3,
-          image: "../../images/3.jpg"
+          image: "https://pic2.zhimg.com/v2-364dbc08a87930b789b2074085a38c05_r.jpg"
         }
       ],
       
@@ -73,10 +75,18 @@ Page({
             price: 158
           }
         ],
-        5: [], // 时蔬类暂无菜品
+        5: [
+            {
+                id: 6,
+                name: "葱香脆藕",
+                image: "../../images/7.jpeg",
+                description: "澳洲进口牛肉，炭火烤制",
+                price: 158
+              }
+        ], // 时蔬类暂无菜品
         6: [
           {
-            id: 6,
+            id: 7,
             name: "猫饭",
             image: "https://pic2.zhimg.com/v2-364dbc08a87930b789b2074085a38c05_r.jpg",
             description: "日式猫饭，柴鱼花飞舞",
@@ -91,9 +101,31 @@ Page({
     },
   
     onLoad() {
+      // 计算滚动区域高度
+      this.calculateScrollHeight();
+      
       // 初始化显示第一个分类的菜品
       this.setData({
         currentDishes: this.data.dishes[this.data.currentCategory]
+      });
+    },
+    
+    onReady() {
+      // 确保页面渲染完成后再次计算高度
+      this.calculateScrollHeight();
+    },
+    
+    // 计算滚动区域高度
+    calculateScrollHeight() {
+      const systemInfo = wx.getSystemInfoSync();
+      const windowHeight = systemInfo.windowHeight;
+      const bannerHeight = 400; // 轮播图高度400rpx，约200px
+      
+      // 计算可用高度（窗口高度 - 轮播图高度 - 可能的安全区域）
+      const scrollHeight = windowHeight - bannerHeight / 2 - 20;
+      
+      this.setData({
+        scrollHeight: scrollHeight
       });
     },
   

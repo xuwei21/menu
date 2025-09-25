@@ -19,7 +19,7 @@
   <!-- 内容区域 -->
   <view class="content-section">
     <!-- 左侧导航 -->
-    <scroll-view scroll-y class="nav-section">
+    <scroll-view scroll-y class="nav-section" style="height: {{scrollHeight}}px;">
       <view 
         wx:for="{{categories}}" 
         wx:key="id"
@@ -32,7 +32,7 @@
     </scroll-view>
     
     <!-- 右侧菜品列表 -->
-    <scroll-view scroll-y class="dishes-section">
+    <scroll-view scroll-y class="dishes-section" style="height: {{scrollHeight}}px;">
       <view wx:if="{{currentDishes.length > 0}}" class="dishes-container">
         <view 
           wx:for="{{currentDishes}}" 
