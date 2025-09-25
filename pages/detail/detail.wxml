@@ -1,0 +1,19 @@
+<!-- pages/detail/detail.wxml -->
+<view class="container">
+  <!-- 返回按钮 -->
+  <view class="back-btn" bindtap="goBack">
+    <text class="back-icon">←</text>
+  </view>
+  
+  <!-- 大图区域 -->
+  <view class="image-section">
+    <image src="{{dish.image}}" mode="aspectFill" class="detail-image"></image>
+  </view>
+  
+  <!-- 信息区域 -->
+  <view class="info-section">
+    <text class="dish-name">{{dish.name}}</text>
+    <text class="dish-desc">{{dish.description}}</text>
+    <text class="dish-price">¥{{dish.price}}</text>
+  </view>
+</view>

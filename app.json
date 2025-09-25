@@ -1,24 +1,14 @@
 {
-  "pages": [
-    "pages/index/index"
-  ],
-  "window": {
-    "navigationBarTextStyle": "black",
-    "navigationStyle": "custom"
-  },
-  "style": "v2",
-  "renderer": "skyline",
-  "rendererOptions": {
-    "skyline": {
-      "defaultDisplayBlock": true,
-      "defaultContentBox": true,
-      "tagNameStyleIsolation": "legacy",
-      "disableABTest": true,
-      "sdkVersionBegin": "3.0.0",
-      "sdkVersionEnd": "15.255.255"
-    }
-  },
-  "componentFramework": "glass-easel",
-  "sitemapLocation": "sitemap.json",
-  "lazyCodeLoading": "requiredComponents"
-}
+    "pages": [
+      "pages/index/index",
+      "pages/detail/detail"
+    ],
+    "window": {
+      "navigationBarTitleText": "梦猫人の私房菜",
+      "navigationBarBackgroundColor": "#FF6B6B",
+      "navigationBarTextStyle": "white",
+      "backgroundColor": "#FFF5F5"
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json"
+  }

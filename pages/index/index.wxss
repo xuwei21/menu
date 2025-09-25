@@ -1,10 +1,159 @@
-/**index.wxss**/
-page {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-.scrollarea {
-  flex: 1;
-  overflow-y: hidden;
-}
+/* pages/index/index.wxss */
+.container {
+    height: 100vh;
+    background: #FFF5F5;
+    box-sizing: border-box;
+  }
+  
+  .header {
+    background: #FF6B6B;
+    padding: 30rpx 0;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  
+  .title {
+    color: white;
+    font-size: 36rpx;
+    font-weight: bold;
+  }
+  
+  .banner-section {
+    height: 400rpx;
+    box-sizing: border-box;
+  }
+  
+  .banner-swiper {
+    height: 100%;
+    box-sizing: border-box;
+  }
+  
+  .banner-image {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  
+  .content-section {
+    display: flex;
+    height: calc(100vh - 460rpx);
+    box-sizing: border-box;
+    align-items: flex-start; /* 确保顶部对齐 */
+  }
+  
+  /* 左侧导航 */
+  .nav-section {
+    width: 200rpx;
+    background: white;
+    border-right: 2rpx solid #F0F0F0;
+    box-sizing: border-box;
+    flex-shrink: 0; /* 防止导航栏被压缩 */
+    height: 100%;
+  }
+  
+  .nav-item {
+    padding: 30rpx 20rpx;
+    text-align: center;
+    border-bottom: 2rpx solid #F8F8F8;
+    transition: all 0.3s;
+    box-sizing: border-box;
+  }
+  
+  .nav-item.active {
+    background: #FFF5F5;
+    border-right: 4rpx solid #FF6B6B;
+  }
+  
+  .nav-icon {
+    display: block;
+    font-size: 40rpx;
+    margin-bottom: 10rpx;
+  }
+  
+  .nav-text {
+    font-size: 24rpx;
+    color: #666;
+  }
+  
+  .nav-item.active .nav-text {
+    color: #FF6B6B;
+    font-weight: bold;
+  }
+  
+  /* 右侧菜品列表 */
+  .dishes-section {
+    flex: 1;
+    padding: 0; /* 移除内边距，改为在内部容器设置 */
+    box-sizing: border-box;
+    height: 100%;
+  }
+  
+  .dishes-container {
+    padding: 20rpx; /* 将内边距移到这里 */
+    box-sizing: border-box;
+  }
+  
+  .dish-item {
+    display: flex;
+    background: white;
+    border-radius: 16rpx;
+    margin-bottom: 20rpx;
+    padding: 20rpx;
+    box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
+    box-sizing: border-box;
+  }
+  
+  .dish-image {
+    width: 160rpx;
+    height: 160rpx;
+    border-radius: 12rpx;
+    margin-right: 20rpx;
+    box-sizing: border-box;
+  }
+  
+  .dish-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+  
+  .dish-name {
+    font-size: 32rpx;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10rpx;
+  }
+  
+  .dish-desc {
+    font-size: 24rpx;
+    color: #888;
+    line-height: 1.4;
+    margin-bottom: 10rpx;
+  }
+  
+  .dish-price {
+    font-size: 28rpx;
+    color: #FF6B6B;
+    font-weight: bold;
+  }
+  
+  .empty-state {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 20rpx; /* 空状态也添加内边距 */
+  }
+  
+  .empty-text {
+    font-size: 28rpx;
+    color: #999;
+  }
+  
+  /* 为所有元素添加基础盒模型 */
+  swiper, swiper-item, scroll-view, view, text, image {
+    box-sizing: border-box;
+  }

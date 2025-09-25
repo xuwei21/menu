@@ -1,7 +1,58 @@
-<!--index.wxml-->
-<navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF"></navigation-bar>
-<scroll-view class="scrollarea" scroll-y type="list">
-  <view class="container">
-    Weixin
+<!-- pages/index/index.wxml -->
+<view class="container">
+  <!-- 轮播图 -->
+  <view class="banner-section">
+    <swiper 
+      indicator-dots="{{true}}" 
+      autoplay="{{true}}" 
+      interval="{{2000}}"
+      circular="{{true}}"
+      indicator-color="rgba(255,255,255,0.5)"
+      indicator-active-color="#FF6B6B"
+      class="banner-swiper">
+      <swiper-item wx:for="{{banners}}" wx:key="id">
+        <image src="{{item.image}}" mode="aspectFill" class="banner-image"></image>
+      </swiper-item>
+    </swiper>
   </view>
-</scroll-view>
+  
+  <!-- 内容区域 -->
+  <view class="content-section">
+    <!-- 左侧导航 -->
+    <scroll-view scroll-y class="nav-section">
+      <view 
+        wx:for="{{categories}}" 
+        wx:key="id"
+        class="nav-item {{currentCategory === item.id ? 'active' : ''}}"
+        bindtap="switchCategory"
+        data-id="{{item.id}}">
+        <text class="nav-icon">{{item.icon}}</text>
+        <text class="nav-text">{{item.name}}</text>
+      </view>
+    </scroll-view>
+    
+    <!-- 右侧菜品列表 -->
+    <scroll-view scroll-y class="dishes-section">
+      <view wx:if="{{currentDishes.length > 0}}" class="dishes-container">
+        <view 
+          wx:for="{{currentDishes}}" 
+          wx:key="id"
+          class="dish-item"
+          bindtap="goToDetail"
+          data-dish="{{item}}">
+          <image src="{{item.image}}" mode="aspectFill" class="dish-image"></image>
+          <view class="dish-info">
+            <text class="dish-name">{{item.name}}</text>
+            <text class="dish-desc">{{item.description}}</text>
+            <text class="dish-price">¥{{item.price}}</text>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 空状态 -->
+      <view wx:else class="empty-state">
+        <text class="empty-text">暂无菜品，敬请期待</text>
+      </view>
+    </scroll-view>
+  </view>
+</view>
