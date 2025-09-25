@@ -33,22 +33,22 @@ Page({
                 {
                     "name": "奶香牛肋条",
                     "image": "https://i0.hdslb.com/bfs/new_dyn/4c19ce3fa3a67e3e570d8b9ab05f5cb6513535578.jpg",
-                    "description": "澳洲顶级牛肋条，奶香慢炖至酥烂，肉质入口即化，奶味醇厚，奢华享受。",
-                    "price": 100
+                    "description": "内蒙古顶级牛肋条，奶香慢炖至酥烂，肉质入口即化，奶味醇厚，奢华享受。",
+                    "price": 108
                 },
                 {
                     "name": "葱香脆藕",
                     "image": "https://i0.hdslb.com/bfs/new_dyn/3049ea6c993881ecb9b77c18b84149f1513535578.jpg",
-                    "description": "湖北九孔鲜藕，葱油轻拌，清脆爽口，淡雅葱香，开胃解腻。",
-                    "price": 30
+                    "description": "西子湖现采九孔鲜藕，葱油轻拌，清脆爽口，淡雅葱香，开胃解腻。",
+                    "price": 28
                 }
             ],
             2: [ // 季节限定
                 {
                     "name": "葱香脆藕",
                     "image": "https://i0.hdslb.com/bfs/new_dyn/3049ea6c993881ecb9b77c18b84149f1513535578.jpg",
-                    "description": "湖北九孔鲜藕，葱油轻拌，清脆爽口，淡雅葱香，开胃解腻。",
-                    "price": 30
+                    "description": "西子湖现采九孔鲜藕，葱油轻拌，清脆爽口，淡雅葱香，开胃解腻。",
+                    "price": 28
                 }
             ],
             3: [ // 小小海鲜
@@ -56,35 +56,35 @@ Page({
                     "name": "家烧鲈鱼",
                     "image": "https://i0.hdslb.com/bfs/new_dyn/b335138ce7c3d4e03c2d703832c418f9513535578.png",
                     "description": "精选东海鲈鱼，传统家烧技法，肉质细腻鲜嫩，汤汁浓郁回甘，尽显江南风味。",
-                    "price": 80
+                    "price": 68
                 },
                 {
                     "name": "香炒蟹",
                     "image": "https://i0.hdslb.com/bfs/new_dyn/5ae5274e900c8618dafc2919e81b4a70513535578.jpg",
-                    "description": "梭子蟹蟹鲜活入馔，咸香爆炒，蟹黄丰腴，蟹肉饱满，香气扑鼻，令人回味无穷。",
-                    "price": 120
+                    "description": "梭子蟹鲜活入馔，咸香爆炒，蟹黄丰腴，蟹肉饱满，香气扑鼻，令人回味无穷。",
+                    "price": 88
                 },
                 {
                     "name": "鱿鱼二吃",
                     "image": "https://i0.hdslb.com/bfs/new_dyn/9abf42dcfefaf6f0c7ed21b029d91954513535578.png",
                     "description": "新鲜鱿鱼双拼演绎，一吃白灼保留原鲜，一吃红烧诱人，口感层次丰富，创意十足。",
-                    "price": 60
+                    "price": 98
                 }
             ],
             4: [ // 肉肉肉
                 {
                     "name": "奶香牛肋条",
                     "image": "https://i0.hdslb.com/bfs/new_dyn/4c19ce3fa3a67e3e570d8b9ab05f5cb6513535578.jpg",
-                    "description": "澳洲顶级牛肋条，奶香慢炖至酥烂，肉质入口即化，奶味醇厚，奢华享受。",
-                    "price": 100
+                    "description": "内蒙古顶级牛肋条，奶香慢炖至酥烂，肉质入口即化，奶味醇厚，奢华享受。",
+                    "price": 108
                 }
             ],
             5: [ // 时蔬
                 {
                     "name": "葱香脆藕",
                     "image": "https://i0.hdslb.com/bfs/new_dyn/3049ea6c993881ecb9b77c18b84149f1513535578.jpg",
-                    "description": "湖北九孔鲜藕，葱油轻拌，清脆爽口，淡雅葱香，开胃解腻。",
-                    "price": 25
+                    "description": "西子湖现采九孔鲜藕，葱油轻拌，清脆爽口，淡雅葱香，开胃解腻。",
+                    "price": 28
                 }
             ], 
             6: [ //主食
@@ -92,7 +92,7 @@ Page({
                     "name": "日式煎饺",
                     "image": "https://i0.hdslb.com/bfs/new_dyn/da33a6e1e10868727631059edb814603513535578.jpg",
                     "description": "日式手工煎饺，皮薄馅多，煎至金黄酥脆，搭配特制酱汁，精致开胃。",
-                    "price": 40
+                    "price": 24
                 }
             ],
             7: [ // 甜品
@@ -100,7 +100,7 @@ Page({
                     "name": "杨枝甘露",
                     "image": "https://i0.hdslb.com/bfs/new_dyn/b89c67f63f4e101be08142b810469dac513535578.jpg",
                     "description": "港式经典甜点，芒果西柚与西米完美融合，甜而不腻，清凉润口，餐后绝配。",
-                    "price": 35
+                    "price": 18
                 }
             ]
         },
