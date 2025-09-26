@@ -31,7 +31,7 @@
       </view>
     </scroll-view>
     
-    <!-- 右侧菜品列表 -->
+<!-- 右侧菜品列表 -->
     <scroll-view scroll-y class="dishes-section" style="height: {{scrollHeight}}px;">
       <view wx:if="{{currentDishes.length > 0}}" class="dishes-container">
         <view 
@@ -44,17 +44,20 @@
           <view class="dish-info">
             <text class="dish-name">{{item.name}}</text>
             <text class="dish-desc">{{item.description}}</text>
-            <view class="price-section">
-              <text class="dish-price">¥{{item.price}}</text>
-              <!-- 修改按钮部分，确保事件绑定正确 -->
-              <view 
-                  class="add-btn {{item.selected ? 'selected' : ''}}"
-                  bindtap="toggleDishSelection"
-                  data-dish="{{item}}"
-                  catch:tap="noop"> <!-- 防止事件冒泡 -->
-                  <text class="btn-icon">{{item.selected ? '✓' : '+'}}</text>
-              </view>
-            </view>
+<!-- 修改价格区域部分 -->
+<view class="price-section">
+  <text class="dish-price">¥{{item.price}}</text>
+  <!-- 扩大按钮容器，增加点击区域 -->
+  <view class="btn-wrapper" catchtap="toggleDishSelection" data-dish="{{item}}">
+    <view class="add-btn {{item.selected ? 'selected' : ''}}">
+      <image 
+        class="btn-icon" 
+        src="{{item.selected ? '/images/done.png' : '/images/add.png'}}" 
+        mode="aspectFit">
+      </image>
+    </view>
+  </view>
+</view>
           </view>
         </view>
       </view>

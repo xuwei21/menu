@@ -1,9 +1,5 @@
 <!-- pages/order/order.wxml -->
 <view class="order-container">
-  <!-- 页面标题 -->
-  <view class="order-header">
-    <text class="order-title">当前订单</text>
-  </view>
 
   <!-- 订单内容 -->
   <scroll-view scroll-y class="order-content" style="height: {{scrollHeight}}px;">

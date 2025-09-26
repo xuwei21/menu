@@ -190,7 +190,7 @@ Page({
   },
 
   toggleDishSelection(e) {
-    e.stopPropagation();
+    // 使用catchtap后，这里不需要e.stopPropagation()
     const dish = e.currentTarget.dataset.dish;
     const app = getApp();
     

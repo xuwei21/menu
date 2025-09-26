@@ -160,11 +160,20 @@
   font-weight: bold;
 }
 
+/* 添加按钮包装容器样式 */
+.btn-wrapper {
+  padding: 20rpx; /* 扩大点击区域 */
+  margin: -20rpx; /* 抵消padding对布局的影响 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .add-btn {
-  width: 60rpx;
-  height: 60rpx;
+  width: 48rpx;
+  height: 48rpx;
   border-radius: 50%;
-  background: #FF6B6B;
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -174,19 +183,39 @@
 }
 
 .add-btn.selected {
-  background: #4CAF50;
+  background: #ffffff;
   transform: scale(1.1);
 }
 
 .btn-icon {
-  color: white;
-  font-size: 28rpx;
-  font-weight: bold;
+  width: 60rpx;
+  height: 60rpx;
   transition: all 0.3s ease;
+  opacity: 1;
+}
+
+/* 添加动画效果 */
+.add-btn .btn-icon {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .add-btn:active {
   transform: scale(0.95);
+}
+
+.add-btn.selected:active {
+  transform: scale(1.05);
 }
 
 .empty-state {
