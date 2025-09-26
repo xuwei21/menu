@@ -6,12 +6,15 @@ Page({
         // 轮播图数据
         banners: [
             {
-                image: "https://i0.hdslb.com/bfs/new_dyn/9abf42dcfefaf6f0c7ed21b029d91954513535578.png" // 修改为实际存在的图片路径
+                name: "顾式·油爆罗氏虾",
+                image: "https://i0.hdslb.com/bfs/new_dyn/d26f95421b1c60c56829149c5fd7eb9d513535578.jpg" // 修改为实际存在的图片路径
             },
             {
-                image: "https://i0.hdslb.com/bfs/new_dyn/3049ea6c993881ecb9b77c18b84149f1513535578.jpg"
+                name: "鱿鱼二吃",
+                image: "https://i0.hdslb.com/bfs/new_dyn/9abf42dcfefaf6f0c7ed21b029d91954513535578.png"
             },
             {
+                name: "杨枝甘露",
                 image: "https://i0.hdslb.com/bfs/new_dyn/b89c67f63f4e101be08142b810469dac513535578.jpg"
             }
         ],
@@ -31,43 +34,43 @@ Page({
         dishes: {
             1: [
                 {
-                    "name": "奶香牛肋条",
-                    "image": "https://i0.hdslb.com/bfs/new_dyn/4c19ce3fa3a67e3e570d8b9ab05f5cb6513535578.jpg",
-                    "description": "内蒙古顶级牛肋条，奶香慢炖至酥烂，肉质入口即化，奶味醇厚，奢华享受。",
-                    "price": 108
+                    "name": "顾式·油爆罗氏虾",
+                    "image": "https://i0.hdslb.com/bfs/new_dyn/d26f95421b1c60c56829149c5fd7eb9d513535578.jpg",
+                    "description": "精选大只鲜活罗氏虾，以猛火快攻，瞬间锁住虾肉原鲜。金黄蒜蓉与醇厚黄油交融的馥郁香气，紧紧包裹于虾身，造就外壳焦香酥脆、虾肉弹嫩饱满的绝妙口感。每一口，皆是火焰艺术与味觉盛宴的激情碰撞。",
+                    "price": 88
                 },
                 {
-                    "name": "葱香脆藕",
-                    "image": "https://i0.hdslb.com/bfs/new_dyn/3049ea6c993881ecb9b77c18b84149f1513535578.jpg",
-                    "description": "西子湖现采九孔鲜藕，葱油轻拌，清脆爽口，淡雅葱香，开胃解腻。",
-                    "price": 28
+                    "name": "奶香牛肋条",
+                    "image": "https://i0.hdslb.com/bfs/new_dyn/4c19ce3fa3a67e3e570d8b9ab05f5cb6513535578.jpg",
+                    "description": "甄选内蒙古草原顶级牛肋条，佐以浓郁奶香文火慢炖数小时。肉质酥烂而不散，油脂化为醇厚汁水，入口即化，奶香与肉香交织萦绕，呈现温暖丰腴的奢华享受。",
+                    "price": 108
                 }
             ],
             2: [ // 季节限定
                 {
                     "name": "葱香脆藕",
                     "image": "https://i0.hdslb.com/bfs/new_dyn/3049ea6c993881ecb9b77c18b84149f1513535578.jpg",
-                    "description": "西子湖现采九孔鲜藕，葱油轻拌，清脆爽口，淡雅葱香，开胃解腻。",
+                    "description": "严选西子湖当季九孔鲜藕，取其中段最为脆嫩部位。以现熬葱油轻巧拌制，最大程度保留藕片清甜本味。口感如玉瓷般清脆，淡雅葱香点睛，为一席佳肴带来清新风韵。",
                     "price": 28
                 }
             ],
             3: [ // 小小海鲜
                 {
-                    "name": "家烧鲈鱼",
-                    "image": "https://i0.hdslb.com/bfs/new_dyn/b335138ce7c3d4e03c2d703832c418f9513535578.png",
-                    "description": "精选东海鲈鱼，传统家烧技法，肉质细腻鲜嫩，汤汁浓郁回甘，尽显江南风味。",
+                    "name": "葱油豉汁鲈鱼",
+                    "image": "https://i0.hdslb.com/bfs/new_dyn/ca1cfc809e54b0c97d99040eb4a9923a513535578.jpg",
+                    "description": "鲜活鲈鱼巧制孔雀开屏之姿，宴席佳品，赏心悦目。清蒸至恰熟，肉质如凝脂般滑嫩。点睛之笔在于一勺滚烫葱油，激发出特调豉汁的咸鲜本源。滋味层层递进，鲜美醇和，尽显粤式蒸功的优雅与精妙。",
                     "price": 68
                 },
                 {
                     "name": "香炒蟹",
                     "image": "https://i0.hdslb.com/bfs/new_dyn/5ae5274e900c8618dafc2919e81b4a70513535578.jpg",
-                    "description": "梭子蟹鲜活入馔，咸香爆炒，蟹黄丰腴，蟹肉饱满，香气扑鼻，令人回味无穷。",
+                    "description": "精选鲜活肥美梭子蟹，以传统猛火快炒技艺锁住蟹之原鲜。蟹黄丰腴如金，蟹肉饱满紧实，咸香汁水充分渗入蟹壳缝隙。出锅时镬气十足，香气奔放，是令人酣畅淋漓的海洋之味。",
                     "price": 88
                 },
                 {
                     "name": "鱿鱼二吃",
                     "image": "https://i0.hdslb.com/bfs/new_dyn/9abf42dcfefaf6f0c7ed21b029d91954513535578.png",
-                    "description": "新鲜鱿鱼双拼演绎，一吃白灼保留原鲜，一吃红烧诱人，口感层次丰富，创意十足。",
+                    "description": "一味两吃，尽显新鲜鱿鱼之妙。白灼之技凸显其天然弹滑与本真清甜；红烧之法则赋予其酱香浓郁、软糯入味的丰腴姿态。双拼对比，口感层次丰富，匠心独具。",
                     "price": 98
                 }
             ],
@@ -75,23 +78,29 @@ Page({
                 {
                     "name": "奶香牛肋条",
                     "image": "https://i0.hdslb.com/bfs/new_dyn/4c19ce3fa3a67e3e570d8b9ab05f5cb6513535578.jpg",
-                    "description": "内蒙古顶级牛肋条，奶香慢炖至酥烂，肉质入口即化，奶味醇厚，奢华享受。",
+                    "description": "甄选内蒙古草原顶级牛肋条，佐以浓郁奶香文火慢炖数小时。肉质酥烂而不散，油脂化为醇厚汁水，入口即化，奶香与肉香交织萦绕，呈现温暖丰腴的奢华享受。",
                     "price": 108
+                },
+                {
+                    "name": "绍式葱烤鱼",
+                    "image": "https://i0.hdslb.com/bfs/new_dyn/a11badc0fab05cbe4113e17cc7a41b9a513535578.jpg",
+                    "description": "遵循古法绍式技艺，精选野生鲫鱼，与大量香葱经长时间慢火煨烤。葱段在高温下释放出深沉甜润的焦香，丝丝渗入鱼肉肌理。成品鱼骨酥软，鱼肉紧实入味，葱香浓郁深邃，是一道考验火候与耐心的传统风味。",
+                    "price": 88
                 }
             ],
             5: [ // 时蔬
                 {
                     "name": "葱香脆藕",
                     "image": "https://i0.hdslb.com/bfs/new_dyn/3049ea6c993881ecb9b77c18b84149f1513535578.jpg",
-                    "description": "西子湖现采九孔鲜藕，葱油轻拌，清脆爽口，淡雅葱香，开胃解腻。",
+                    "description": "严选西子湖当季九孔鲜藕，取其中段最为脆嫩部位。以现熬葱油轻巧拌制，最大程度保留藕片清甜本味。口感如玉瓷般清脆，淡雅葱香点睛，为一席佳肴带来清新风韵。",
                     "price": 28
                 }
-            ], 
+            ],
             6: [ //主食
                 {
                     "name": "日式煎饺",
                     "image": "https://i0.hdslb.com/bfs/new_dyn/da33a6e1e10868727631059edb814603513535578.jpg",
-                    "description": "日式手工煎饺，皮薄馅多，煎至金黄酥脆，搭配特制酱汁，精致开胃。",
+                    "description": "秉承日式煎饺工艺，面皮手工擀制，薄而柔韧。内馅饱满多汁，于特制铁板间煎至底面形成完美金黄冰花脆壳。蘸取少许柑橘醋，口感酥脆与鲜嫩并存，滋味精巧平衡。",
                     "price": 24
                 }
             ],
@@ -99,7 +108,7 @@ Page({
                 {
                     "name": "杨枝甘露",
                     "image": "https://i0.hdslb.com/bfs/new_dyn/b89c67f63f4e101be08142b810469dac513535578.jpg",
-                    "description": "港式经典甜点，芒果西柚与西米完美融合，甜而不腻，清凉润口，餐后绝配。",
+                    "description": "复刻港式经典神韵，以吕宋芒的浓郁香甜为基底，融入西柚果粒的微酸清苦与西米的晶莹弹滑。椰浆与淡奶调和出顺滑绵密口感，甜而不腻，餐后一品，清凉润口，余韵悠长。",
                     "price": 18
                 }
             ]
