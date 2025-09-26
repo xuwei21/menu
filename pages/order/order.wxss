@@ -1,28 +1,14 @@
 /* pages/order/order.wxss */
 .order-container {
   height: 100vh;
-  background: #FFF5F5;
+  background: #f8f9fa;
   display: flex;
   flex-direction: column;
 }
 
-.order-header {
-  background: white;
-  padding: 30rpx;
-  text-align: center;
-  border-bottom: 2rpx solid #F0F0F0;
-  flex-shrink: 0;
-}
-
-.order-title {
-  font-size: 36rpx;
-  font-weight: bold;
-  color: #333;
-}
-
 .order-content {
   flex: 1;
-  padding: 20rpx;
+  padding: 24rpx;
   box-sizing: border-box;
 }
 
@@ -30,78 +16,111 @@
   margin-bottom: 20rpx;
 }
 
+/* 订单项布局 - 两列设计 */
 .order-dish-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   background: white;
-  border-radius: 16rpx;
-  padding: 20rpx;
-  margin-bottom: 20rpx;
-  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
+  border-radius: 20rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.06);
+  transition: all 0.3s ease;
 }
 
-.order-dish-item .dish-image {
-  width: 120rpx;
-  height: 120rpx;
+.order-dish-item:active {
+  transform: scale(0.98);
+}
+
+/* 第一列：菜品图片 */
+.dish-image {
+  width: 140rpx;
+  height: 140rpx;
   border-radius: 12rpx;
-  margin-right: 20rpx;
+  margin-right: 24rpx;
   flex-shrink: 0;
+  object-fit: cover;
 }
 
-.order-dish-item .dish-info {
+/* 第二列：复合内容 */
+.dish-content {
   flex: 1;
   display: flex;
   flex-direction: column;
+  min-height: 140rpx;
 }
 
-.order-dish-item .dish-name {
-  font-size: 28rpx;
-  font-weight: bold;
+/* 菜名样式 */
+.dish-name {
+  font-size: 36rpx;
+  font-weight: 600;
   color: #333;
-  margin-bottom: 8rpx;
+  line-height: 1.4;
+  margin-bottom: 16rpx;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.order-dish-item .dish-price {
-  font-size: 26rpx;
-  color: #FF6B6B;
-  font-weight: bold;
+/* 底部价格和数量区域 */
+.dish-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
 }
 
+.dish-price {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #ff6b6b;
+}
+
+/* 数量控制器优化 */
 .quantity-control {
   display: flex;
+  width: 180rpx;
   align-items: center;
-  gap: 20rpx;
+  gap: 16rpx;
 }
 
 .btn-minus, .btn-plus {
   width: 50rpx;
   height: 50rpx;
   border-radius: 50%;
-  border: 2rpx solid #FF6B6B;
+  border: 2rpx solid #ff6b6b;
   background: white;
-  color: #FF6B6B;
-  font-size: 24rpx;
+  color: #ff6b6b;
+  font-size: 28rpx;
   font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
+  transition: all 0.2s ease;
+}
+
+.btn-minus:active, .btn-plus:active {
+  background: #ff6b6b;
+  color: white;
 }
 
 .quantity {
   font-size: 28rpx;
-  font-weight: bold;
+  font-weight: 600;
   color: #333;
-  min-width: 40rpx;
+  min-width: 48rpx;
   text-align: center;
 }
 
+/* 空状态样式 */
 .empty-order {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: 60vh;
   padding: 40rpx;
 }
 
@@ -118,28 +137,32 @@
 }
 
 .order-btn {
-  background: #FF6B6B;
+  background: #ff6b6b;
   color: white;
   border-radius: 50rpx;
   padding: 20rpx 60rpx;
   font-size: 28rpx;
-  font-weight: bold;
+  font-weight: 600;
   border: none;
+  box-shadow: 0 4rpx 12rpx rgba(255,107,107,0.3);
 }
 
+/* 底部结算栏优化 */
 .order-footer {
   background: white;
   padding: 20rpx 30rpx;
-  border-top: 2rpx solid #F0F0F0;
+  border-top: 2rpx solid #f0f0f0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-shrink: 0;
+  box-shadow: 0 -2rpx 12rpx rgba(0,0,0,0.05);
 }
 
 .total-info {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .total-count {
@@ -149,18 +172,27 @@
 }
 
 .total-price {
-  font-size: 28rpx;
-  font-weight: bold;
-  color: #FF6B6B;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #ff6b6b;
 }
 
+/* 下单按钮优化 */
 .checkout-btn {
-  background: #FF6B6B;
+  background: #ff6b6b;
   color: white;
   border-radius: 40rpx;
-  padding: 20rpx 40rpx;
+  padding: 20rpx 36rpx;
   font-size: 28rpx;
-  font-weight: bold;
+  font-weight: 600;
   border: none;
-  min-width: 200rpx;
+  min-width: 160rpx;
+  margin-right: 50rpx;
+  box-shadow: 0 4rpx 12rpx rgba(255,107,107,0.3);
+  transition: all 0.2s ease;
+}
+
+.checkout-btn:active {
+  transform: scale(0.95);
+  opacity: 0.9;
 }

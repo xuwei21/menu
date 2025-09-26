@@ -5,22 +5,30 @@
   <scroll-view scroll-y class="order-content" style="height: {{scrollHeight}}px;">
     <view wx:if="{{selectedDishes.length > 0}}" class="dishes-list">
       <view wx:for="{{selectedDishes}}" wx:key="id" class="order-dish-item">
+        <!-- 第一列：菜品图片 -->
         <image src="{{item.image}}" mode="aspectFill" class="dish-image"></image>
-        <view class="dish-info">
+        
+        <!-- 第二列：复合内容 -->
+        <view class="dish-content">
+          <!-- 上面：菜名 -->
           <text class="dish-name">{{item.name}}</text>
-          <text class="dish-price">¥{{item.price}}</text>
-        </view>
-        <view class="quantity-control">
-          <button class="btn-minus" bindtap="decreaseQuantity" data-id="{{item.id}}">-</button>
-          <text class="quantity">{{item.quantity}}</text>
-          <button class="btn-plus" bindtap="increaseQuantity" data-id="{{item.id}}">+</button>
+          
+          <!-- 下面：价格和数量控制（水平布局） -->
+          <view class="dish-bottom">
+            <text class="dish-price">¥{{item.price}}</text>
+            <view class="quantity-control">
+              <button class="btn-minus" bindtap="decreaseQuantity" data-id="{{item.id}}">-</button>
+              <text class="quantity">{{item.quantity}}</text>
+              <button class="btn-plus" bindtap="increaseQuantity" data-id="{{item.id}}">+</button>
+            </view>
+          </view>
         </view>
       </view>
     </view>
 
     <!-- 空状态 -->
     <view wx:else class="empty-order">
-      <view class="empty-icon">🛒</view>
+      <view class="empty-icon">📋</view>
       <text class="empty-text">还没有选择菜品</text>
       <button class="order-btn" bindtap="goToMenu">立即点单</button>
     </view>
@@ -32,6 +40,6 @@
       <text class="total-count">共 {{totalCount}} 件商品</text>
       <text class="total-price">合计: ¥{{totalPrice}}</text>
     </view>
-    <button class="checkout-btn">立即结算</button>
+    <button class="checkout-btn">下单</button>
   </view>
 </view>
