@@ -4,12 +4,14 @@ Page({
     scrollHeight: 0,
     selectedDishes: [],
     totalCount: 0,
-    totalPrice: 0
+    totalPrice: 0,
+    footerHeight: 120 // 预估底部栏高度(rpx)，可根据实际调整
   },
 
   onLoad() {
     this.calculateScrollHeight();
     this.loadSelectedDishes();
+    this.calculateFooterHeight();
   },
 
   onShow() {
@@ -22,10 +24,20 @@ Page({
     
     // 计算tabBar高度（约50px）
     const tabBarHeight = 50;
+    // 减去tabBar高度，scroll-view占据剩余空间
     const scrollHeight = windowHeight - tabBarHeight;
 
     this.setData({
       scrollHeight: scrollHeight
+    });
+  },
+
+  calculateFooterHeight() {
+    // 可以根据需要精确计算底部栏高度
+    // 这里使用预估值，底部栏高度约为120rpx ≈ 60px
+    const footerHeight = 60; // px
+    this.setData({
+      footerHeight: footerHeight
     });
   },
 

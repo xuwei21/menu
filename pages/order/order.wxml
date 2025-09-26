@@ -1,19 +1,13 @@
 <!-- pages/order/order.wxml -->
 <view class="order-container">
-
   <!-- 订单内容 -->
   <scroll-view scroll-y class="order-content" style="height: {{scrollHeight}}px;">
     <view wx:if="{{selectedDishes.length > 0}}" class="dishes-list">
       <view wx:for="{{selectedDishes}}" wx:key="id" class="order-dish-item">
-        <!-- 第一列：菜品图片 -->
+        <!-- 菜品项内容保持不变 -->
         <image src="{{item.image}}" mode="aspectFill" class="dish-image"></image>
-        
-        <!-- 第二列：复合内容 -->
         <view class="dish-content">
-          <!-- 上面：菜名 -->
           <text class="dish-name">{{item.name}}</text>
-          
-          <!-- 下面：价格和数量控制（水平布局） -->
           <view class="dish-bottom">
             <text class="dish-price">¥{{item.price}}</text>
             <view class="quantity-control">
@@ -32,9 +26,12 @@
       <text class="empty-text">还没有选择菜品</text>
       <button class="order-btn" bindtap="goToMenu">立即点单</button>
     </view>
+    
+    <!-- 添加底部占位，防止内容被底部栏遮挡 -->
+    <view wx:if="{{selectedDishes.length > 0}}" class="bottom-placeholder" style="height: {{footerHeight}}px;"></view>
   </scroll-view>
 
-  <!-- 底部结算栏 -->
+  <!-- 底部结算栏 - 移出scroll-view -->
   <view wx:if="{{selectedDishes.length > 0}}" class="order-footer">
     <view class="total-info">
       <text class="total-count">共 {{totalCount}} 件商品</text>
