@@ -1,0 +1,41 @@
+<!-- pages/order/order.wxml -->
+<view class="order-container">
+  <!-- 页面标题 -->
+  <view class="order-header">
+    <text class="order-title">当前订单</text>
+  </view>
+
+  <!-- 订单内容 -->
+  <scroll-view scroll-y class="order-content" style="height: {{scrollHeight}}px;">
+    <view wx:if="{{selectedDishes.length > 0}}" class="dishes-list">
+      <view wx:for="{{selectedDishes}}" wx:key="id" class="order-dish-item">
+        <image src="{{item.image}}" mode="aspectFill" class="dish-image"></image>
+        <view class="dish-info">
+          <text class="dish-name">{{item.name}}</text>
+          <text class="dish-price">¥{{item.price}}</text>
+        </view>
+        <view class="quantity-control">
+          <button class="btn-minus" bindtap="decreaseQuantity" data-id="{{item.id}}">-</button>
+          <text class="quantity">{{item.quantity}}</text>
+          <button class="btn-plus" bindtap="increaseQuantity" data-id="{{item.id}}">+</button>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view wx:else class="empty-order">
+      <view class="empty-icon">🛒</view>
+      <text class="empty-text">还没有选择菜品</text>
+      <button class="order-btn" bindtap="goToMenu">立即点单</button>
+    </view>
+  </scroll-view>
+
+  <!-- 底部结算栏 -->
+  <view wx:if="{{selectedDishes.length > 0}}" class="order-footer">
+    <view class="total-info">
+      <text class="total-count">共 {{totalCount}} 件商品</text>
+      <text class="total-price">合计: ¥{{totalPrice}}</text>
+    </view>
+    <button class="checkout-btn">立即结算</button>
+  </view>
+</view>

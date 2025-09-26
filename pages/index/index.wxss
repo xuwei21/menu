@@ -1,164 +1,204 @@
 /* pages/index/index.wxss */
 .container {
-    height: 100vh;
-    background: #FFF5F5;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .banner-section {
-    height: 400rpx;
-    box-sizing: border-box;
-    flex-shrink: 0; /* 防止轮播图被压缩 */
-  }
-  
-  .banner-swiper {
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-  }
-  
-  .banner-image {
-    width: 100%;
-    height: 100%;
-    display: block;
-    box-sizing: border-box;
-  }
-  
-  .content-section {
-    display: flex;
-    flex: 1;
-    box-sizing: border-box;
-    align-items: stretch; /* 确保两侧等高 */
-    margin-top: 0; /* 移除可能的外边距 */
-  }
-  
-  /* 左侧导航 - 修复对齐和固定问题 */
-  .nav-section {
-    width: 200rpx;
-    background: white;
-    border-right: 2rpx solid #F0F0F0;
-    box-sizing: border-box;
-    flex-shrink: 0; /* 防止导航栏被压缩 */
-    position: relative; /* 确保定位正常 */
-  }
-  
-  .nav-item {
-    padding: 30rpx 20rpx;
-    text-align: center;
-    border-bottom: 2rpx solid #F8F8F8;
-    transition: all 0.3s;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 120rpx; /* 确保每个导航项有最小高度 */
-  }
-  
-  .nav-item.active {
-    background: #FFF5F5;
-    border-right: 4rpx solid #FF6B6B;
-    position: relative;
-    z-index: 1;
-  }
-  
-  .nav-icon {
-    display: block;
-    font-size: 40rpx;
-    margin-bottom: 10rpx;
-  }
-  
-  .nav-text {
-    font-size: 24rpx;
-    color: #666;
-    line-height: 1.2;
-  }
-  
-  .nav-item.active .nav-text {
-    color: #FF6B6B;
-    font-weight: bold;
-  }
-  
-  /* 右侧菜品列表 */
-  .dishes-section {
-    flex: 1;
-    box-sizing: border-box;
-    background: #FFF5F5;
-  }
-  
-  .dishes-container {
-    padding: 20rpx;
-    box-sizing: border-box;
-    min-height: 100%; /* 确保容器有最小高度 */
-  }
-  
-  .dish-item {
-    display: flex;
-    background: white;
-    border-radius: 16rpx;
-    margin-bottom: 20rpx;
-    padding: 20rpx;
-    box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
-    box-sizing: border-box;
-  }
-  
-  .dish-image {
-    width: 160rpx;
-    height: 160rpx;
-    border-radius: 12rpx;
-    margin-right: 20rpx;
-    flex-shrink: 0; /* 防止图片被压缩 */
-    box-sizing: border-box;
-  }
-  
-  .dish-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-sizing: border-box;
-    min-width: 0; /* 防止文本溢出 */
-  }
-  
-  .dish-name {
-    font-size: 32rpx;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 8rpx;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  
-  .dish-desc {
-    font-size: 24rpx;
-    color: #888;
-    line-height: 1.4;
-    margin-bottom: 10rpx;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  
-  .dish-price {
-    font-size: 28rpx;
-    color: #FF6B6B;
-    font-weight: bold;
-  }
-  
-  .empty-state {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 300rpx;
-    box-sizing: border-box;
-    padding: 20rpx;
-  }
-  
-  .empty-text {
-    font-size: 28rpx;
-    color: #999;
-  }
+  height: 100vh;
+  background: #FFF5F5;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.banner-section {
+  height: 400rpx;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.banner-swiper {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  box-sizing: border-box;
+}
+
+.content-section {
+  display: flex;
+  flex: 1;
+  box-sizing: border-box;
+  align-items: stretch;
+  margin-top: 0;
+  height: calc(100vh - 400rpx); /* 确保高度准确计算 */
+}
+
+.nav-section {
+  width: 200rpx;
+  background: white;
+  border-right: 2rpx solid #F0F0F0;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* 确保导航栏和菜品列表高度一致且无间距 */
+.nav-section, .dishes-section {
+  height: 100% !important; /* 强制高度为100% */
+}
+
+.nav-item {
+  padding: 30rpx 20rpx;
+  text-align: center;
+  border-bottom: 2rpx solid #F8F8F8;
+  transition: all 0.3s;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 120rpx;
+}
+
+.nav-item.active {
+  background: #FFF5F5;
+  border-right: 4rpx solid #FF6B6B;
+  position: relative;
+  z-index: 1;
+}
+
+.nav-icon {
+  display: block;
+  font-size: 40rpx;
+  margin-bottom: 10rpx;
+}
+
+.nav-text {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 1.2;
+}
+
+.nav-item.active .nav-text {
+  color: #FF6B6B;
+  font-weight: bold;
+}
+
+.dishes-section {
+  flex: 1;
+  box-sizing: border-box;
+  background: #FFF5F5;
+}
+
+.dishes-container {
+  padding: 20rpx;
+  box-sizing: border-box;
+  min-height: 100%;
+}
+
+.dish-item {
+  display: flex;
+  background: white;
+  border-radius: 16rpx;
+  margin-bottom: 20rpx;
+  padding: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
+  box-sizing: border-box;
+  position: relative;
+}
+
+.dish-image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 12rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.dish-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.dish-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dish-desc {
+  font-size: 24rpx;
+  color: #888;
+  line-height: 1.4;
+  margin-bottom: 10rpx;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.price-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dish-price {
+  font-size: 28rpx;
+  color: #FF6B6B;
+  font-weight: bold;
+}
+
+.add-btn {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  background: #FF6B6B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.add-btn.selected {
+  background: #4CAF50;
+  transform: scale(1.1);
+}
+
+.btn-icon {
+  color: white;
+  font-size: 28rpx;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.add-btn:active {
+  transform: scale(0.95);
+}
+
+.empty-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300rpx;
+  box-sizing: border-box;
+  padding: 20rpx;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
+}

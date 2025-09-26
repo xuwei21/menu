@@ -44,7 +44,17 @@
           <view class="dish-info">
             <text class="dish-name">{{item.name}}</text>
             <text class="dish-desc">{{item.description}}</text>
-            <text class="dish-price">¥{{item.price}}</text>
+            <view class="price-section">
+              <text class="dish-price">¥{{item.price}}</text>
+              <!-- 修改按钮部分，确保事件绑定正确 -->
+              <view 
+                  class="add-btn {{item.selected ? 'selected' : ''}}"
+                  bindtap="toggleDishSelection"
+                  data-dish="{{item}}"
+                  catch:tap="noop"> <!-- 防止事件冒泡 -->
+                  <text class="btn-icon">{{item.selected ? '✓' : '+'}}</text>
+              </view>
+            </view>
           </view>
         </view>
       </view>

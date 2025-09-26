@@ -1,14 +1,35 @@
 {
-    "pages": [
-      "pages/index/index",
-      "pages/detail/detail"
-    ],
-    "window": {
-      "navigationBarTitleText": "梦猫人の私房菜",
-      "navigationBarBackgroundColor": "#FF6B6B",
-      "navigationBarTextStyle": "white",
-      "backgroundColor": "#FFF5F5"
-    },
-    "style": "v2",
-    "sitemapLocation": "sitemap.json"
-  }
+  "pages": [
+    "pages/index/index",
+    "pages/order/order",
+    "pages/detail/detail"
+  ],
+  "window": {
+    "navigationBarTitleText": "梦猫人の私房菜",
+    "navigationBarBackgroundColor": "#FF6B6B",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#FFF5F5"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#FF6B6B",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "菜单",
+        "iconPath": "images/menu.png",
+        "selectedIconPath": "images/menu-active.png"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "订单",
+        "iconPath": "images/order.png",
+        "selectedIconPath": "images/order-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

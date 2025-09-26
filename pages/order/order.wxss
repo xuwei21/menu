@@ -1,0 +1,166 @@
+/* pages/order/order.wxss */
+.order-container {
+  height: 100vh;
+  background: #FFF5F5;
+  display: flex;
+  flex-direction: column;
+}
+
+.order-header {
+  background: white;
+  padding: 30rpx;
+  text-align: center;
+  border-bottom: 2rpx solid #F0F0F0;
+  flex-shrink: 0;
+}
+
+.order-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.order-content {
+  flex: 1;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.dishes-list {
+  margin-bottom: 20rpx;
+}
+
+.order-dish-item {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
+}
+
+.order-dish-item .dish-image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 12rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.order-dish-item .dish-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.order-dish-item .dish-name {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.order-dish-item .dish-price {
+  font-size: 26rpx;
+  color: #FF6B6B;
+  font-weight: bold;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.btn-minus, .btn-plus {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  border: 2rpx solid #FF6B6B;
+  background: white;
+  color: #FF6B6B;
+  font-size: 24rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.quantity {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  min-width: 40rpx;
+  text-align: center;
+}
+
+.empty-order {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 40rpx;
+}
+
+.empty-icon {
+  font-size: 120rpx;
+  margin-bottom: 30rpx;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 40rpx;
+}
+
+.order-btn {
+  background: #FF6B6B;
+  color: white;
+  border-radius: 50rpx;
+  padding: 20rpx 60rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  border: none;
+}
+
+.order-footer {
+  background: white;
+  padding: 20rpx 30rpx;
+  border-top: 2rpx solid #F0F0F0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.total-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.total-count {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 5rpx;
+}
+
+.total-price {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #FF6B6B;
+}
+
+.checkout-btn {
+  background: #FF6B6B;
+  color: white;
+  border-radius: 40rpx;
+  padding: 20rpx 40rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  border: none;
+  min-width: 200rpx;
+}
