@@ -9,7 +9,7 @@
         <view class="dish-content">
           <text class="dish-name">{{item.name}}</text>
           <view class="dish-bottom">
-            <text class="dish-price">¥{{item.price}}</text>
+            <text class="dish-price">{{item.price}} 💎</text>
             <view class="quantity-control">
               <button class="btn-minus" bindtap="decreaseQuantity" data-id="{{item.id}}">-</button>
               <text class="quantity">{{item.quantity}}</text>
@@ -34,9 +34,9 @@
   <!-- 底部结算栏 - 移出scroll-view -->
   <view wx:if="{{selectedDishes.length > 0}}" class="order-footer">
     <view class="total-info">
-      <text class="total-count">共 {{totalCount}} 件商品</text>
-      <text class="total-price">合计: ¥{{totalPrice}}</text>
+      <text class="total-count">共 {{totalCount}} 道菜</text>
+      <text class="total-price">合计: {{totalPrice}} 💎</text>
     </view>
-    <button class="checkout-btn">下单</button>
+    <button class="checkout-btn">就这些吧 🍽️</button>
   </view>
 </view>
