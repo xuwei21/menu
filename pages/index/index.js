@@ -147,6 +147,7 @@ Page({
   },
 
   onLoad() {
+    this.getUserInfo();
     this.calculateScrollHeight();
     this.initDishesSelection();
     this.setData({
@@ -161,6 +162,27 @@ Page({
 
   onReady() {
     this.calculateScrollHeight();
+  },
+
+  // 调用云函数的方法
+  getUserInfo: function () {
+    wx.cloud.callFunction({
+      name: 'get', // 云函数名称，对应你创建的云函数目录名
+      success: res => {
+        console.log('云函数调用成功', res)
+
+        // 打印各个ID
+        console.log('openid:', res.result.openid)
+        this.setData({
+          openid: res.result.openid,
+          //   appid: res.result.appid,
+          //   unionid: res.result.unionid
+        })
+      },
+      fail: err => {
+        console.error('云函数调用失败', err)
+      }
+    })
   },
 
   calculateScrollHeight() {

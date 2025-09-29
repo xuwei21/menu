@@ -5,6 +5,10 @@ App({
   },
 
   onLaunch() {
+    wx.cloud.init({
+        env: 'cloud1-6g3eai443bef4bd0', // 替换为你的云环境ID
+        traceUser: true
+    })
     // 小程序启动时从缓存加载选中的菜品
     try {
       const storedDishes = wx.getStorageSync('selectedDishes');

@@ -9,7 +9,7 @@
         <view class="dish-content">
           <text class="dish-name">{{item.name}}</text>
           <view class="dish-bottom">
-            <text class="dish-price">{{item.price}} 💎</text>
+            <text class="dish-price">{{item.price}} 🕐</text>
             <view class="quantity-control">
               <button class="btn-minus" bindtap="decreaseQuantity" data-id="{{item.id}}">-</button>
               <text class="quantity">{{item.quantity}}</text>
@@ -26,7 +26,7 @@
       <text class="empty-text">还没有选择菜品</text>
       <button class="order-btn" bindtap="goToMenu">立即点单</button>
     </view>
-    
+
     <!-- 添加底部占位，防止内容被底部栏遮挡 -->
     <view wx:if="{{selectedDishes.length > 0}}" class="bottom-placeholder" style="height: {{footerHeight}}px;"></view>
   </scroll-view>
@@ -35,8 +35,38 @@
   <view wx:if="{{selectedDishes.length > 0}}" class="order-footer">
     <view class="total-info">
       <text class="total-count">共 {{totalCount}} 道菜</text>
-      <text class="total-price">合计: {{totalPrice}} 💎</text>
+      <text class="total-price">时间: {{totalPrice}} 🕐</text>
     </view>
-    <button class="checkout-btn">就这些吧 🍽️</button>
+    <button class="checkout-btn" bindtap="onCheckout" disabled="{{isGettingUserInfo}}">
+      {{isGettingUserInfo ? '获取用户信息中...' : '就这些吧 🍽️'}}
+    </button>
+  </view>
+
+  <view wx:if="{{showNicknameModal}}" class="modal-mask">
+    <view class="modal-content">
+      <view class="modal-header">
+        <text>请完善用户信息</text>
+      </view>
+      <view class="modal-body">
+        <!-- 获取头像 -->
+        <view class="avatar-section">
+          <text>选择头像:</text>
+          <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+            <image wx:if="{{avatarUrl}}" src="{{avatarUrl}}" class="avatar"></image>
+            <text wx:else class="avatar-placeholder">选择头像</text>
+          </button>
+        </view>
+
+        <!-- 获取昵称 -->
+        <view class="nickname-section">
+          <text>输入昵称:</text>
+          <input type="nickname" class="nickname-input" placeholder="请输入昵称" bindblur="onNicknameInput" />
+        </view>
+      </view>
+      <view class="modal-footer">
+        <button class="confirm-btn" bindtap="confirmUserInfo">确认</button>
+        <button class="cancel-btn" bindtap="cancelUserInfo">取消</button>
+      </view>
+    </view>
   </view>
 </view>

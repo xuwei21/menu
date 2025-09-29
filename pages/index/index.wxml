@@ -46,7 +46,7 @@
             <text class="dish-desc">{{item.description}}</text>
 <!-- 修改价格区域部分 -->
 <view class="price-section">
-  <text class="dish-price">{{item.price}} 💎</text>
+  <text class="dish-price">{{item.price}} 🕐</text>
   <!-- 扩大按钮容器，增加点击区域 -->
   <view class="btn-wrapper" catchtap="toggleDishSelection" data-dish="{{item}}">
     <view class="add-btn {{item.selected ? 'selected' : ''}}">

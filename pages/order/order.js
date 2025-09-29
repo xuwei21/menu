@@ -1,14 +1,23 @@
 // pages/order/order.js
 Page({
   data: {
+    nickName: '',
     scrollHeight: 0,
     selectedDishes: [],
     totalCount: 0,
     totalPrice: 0,
-    footerHeight: 120 // 预估底部栏高度(rpx)，可根据实际调整
+    footerHeight: 120, // 预估底部栏高度(rpx)，可根据实际调整
+    isGettingUserInfo: false
   },
 
   onLoad() {
+    const userInfo = wx.getStorageSync('userInfo');
+    if (userInfo) {
+      this.setData({
+        nickName: userInfo.nickName,
+        avatarUrl: userInfo.avatarUrl
+      });
+    }
     this.calculateScrollHeight();
     this.loadSelectedDishes();
     this.calculateFooterHeight();
@@ -18,10 +27,94 @@ Page({
     this.loadSelectedDishes();
   },
 
+  // 结算按钮点击事件
+  onCheckout: function () {
+    if (this.data.isGettingUserInfo) return;
+
+    // 检查是否已有用户信息
+    if (this.data.nickName && this.data.nickName !== '微信用户') {
+      // 已有用户信息，直接结算
+      this.processCheckout();
+    } else {
+      // 需要获取用户信息
+      this.setData({
+        isGettingUserInfo: true,
+        showNicknameModal: true,
+        tempNickName: this.data.nickName || '',
+        tempAvatarUrl: this.data.avatarUrl || ''
+      });
+    }
+  },
+
+  // 选择头像
+  onChooseAvatar: function (e) {
+    const avatarUrl = e.detail.avatarUrl;
+    this.setData({
+      tempAvatarUrl: avatarUrl
+    });
+  },
+
+  // 输入昵称
+  onNicknameInput: function (e) {
+    this.setData({
+      tempNickName: e.detail.value
+    });
+  },
+
+  // 确认用户信息
+  confirmUserInfo: function () {
+    if (!this.data.tempNickName.trim()) {
+      wx.showToast({
+        title: '请输入昵称',
+        icon: 'none'
+      });
+      return;
+    }
+
+    const userInfo = {
+      nickName: this.data.tempNickName,
+      avatarUrl: this.data.tempAvatarUrl
+    };
+
+    this.setData({
+      nickName: userInfo.nickName,
+      avatarUrl: userInfo.avatarUrl,
+      showNicknameModal: false,
+      isGettingUserInfo: false
+    });
+
+    // 缓存用户信息
+    wx.setStorageSync('userInfo', userInfo);
+
+    // 继续结算流程
+    this.processCheckout();
+  },
+
+  // 取消用户信息输入
+  cancelUserInfo: function () {
+    this.setData({
+      showNicknameModal: false,
+      isGettingUserInfo: false
+    });
+  },
+
+  // 处理结算逻辑
+  processCheckout: function () {
+    // 这里添加你的结算逻辑
+    console.log('开始结算，用户昵称:', this.data.nickName)
+    console.log('订单详情:', this.data.selectedDishes)
+    // const displayName = this.data.nickName === '微信用户' ? '用户' : this.data.nickName;
+
+    // 示例：跳转到确认订单页面
+    // wx.navigateTo({
+    //   url: '/pages/confirmOrder/confirmOrder?nickName=' + encodeURIComponent(this.data.nickName)
+    // })
+  },
+
   calculateScrollHeight() {
     const systemInfo = wx.getSystemInfoSync();
     const windowHeight = systemInfo.windowHeight;
-    
+
     // 计算tabBar高度（约50px）
     const tabBarHeight = 50;
     // 减去tabBar高度，scroll-view占据剩余空间
@@ -44,10 +137,10 @@ Page({
   loadSelectedDishes() {
     const app = getApp();
     const selectedDishes = app.globalData.selectedDishes || [];
-    
+
     let totalCount = 0;
     let totalPrice = 0;
-    
+
     selectedDishes.forEach(dish => {
       totalCount += dish.quantity;
       totalPrice += dish.price * dish.quantity;
@@ -56,7 +149,7 @@ Page({
     this.setData({
       selectedDishes: selectedDishes,
       totalCount: totalCount,
-      totalPrice: totalPrice.toFixed(2)
+      totalPrice: totalPrice
     });
   },
 
@@ -64,7 +157,7 @@ Page({
     const dishId = e.currentTarget.dataset.id;
     const app = getApp();
     const selectedDishes = app.globalData.selectedDishes || [];
-    
+
     const dishIndex = selectedDishes.findIndex(dish => dish.id === dishId);
     if (dishIndex > -1) {
       selectedDishes[dishIndex].quantity += 1;
@@ -78,7 +171,7 @@ Page({
     const dishId = e.currentTarget.dataset.id;
     const app = getApp();
     let selectedDishes = app.globalData.selectedDishes || [];
-    
+
     const dishIndex = selectedDishes.findIndex(dish => dish.id === dishId);
     if (dishIndex > -1) {
       if (selectedDishes[dishIndex].quantity > 1) {
