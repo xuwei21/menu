@@ -1,7 +1,7 @@
 /* pages/result/result.wxss */
 .result-container {
   height: 100vh;
-  background: linear-gradient(135deg, #b9a95e 0%, #dcd0eb 100%);
+  background: linear-gradient(135deg, #eecdae, #dcd0eb);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,7 +23,7 @@
 
 /* 标题样式 */
 .result-title {
-  font-size: 50rpx;
+  font-size: 64rpx;
   font-weight: 700;
   color: #ffffff;
   text-align: center;
@@ -51,7 +51,7 @@
   left: -10rpx;
   right: -10rpx;
   bottom: -10rpx;
-  background: linear-gradient(135deg, #cea3a3, #ffd93d);
+  background: linear-gradient(135deg, #a372a5, #FFF9C4);
   border-radius: 32rpx;
   z-index: -1;
   opacity: 0.6;
@@ -70,8 +70,8 @@
 
 /* 文案样式 */
 .result-text {
-  font-size: 36rpx;
-  color: rgba(255,255,255,0.9);
+  font-size: 54rpx;
+  color: rgba(255, 255, 255, 0.9);
   text-align: center;
   line-height: 1.6;
   padding: 0 40rpx;
