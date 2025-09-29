@@ -98,6 +98,12 @@ Page({
     });
   },
 
+  clearNickname: function () {
+    this.setData({
+      tempNickName: ''
+    });
+  },
+
   // 处理结算逻辑
   processCheckout: function () {
     // 这里添加你的结算逻辑

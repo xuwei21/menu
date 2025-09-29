@@ -4,7 +4,6 @@
   <scroll-view scroll-y class="order-content" style="height: {{scrollHeight}}px;">
     <view wx:if="{{selectedDishes.length > 0}}" class="dishes-list">
       <view wx:for="{{selectedDishes}}" wx:key="id" class="order-dish-item">
-        <!-- 菜品项内容保持不变 -->
         <image src="{{item.image}}" mode="aspectFill" class="dish-image"></image>
         <view class="dish-content">
           <text class="dish-name">{{item.name}}</text>
@@ -31,7 +30,7 @@
     <view wx:if="{{selectedDishes.length > 0}}" class="bottom-placeholder" style="height: {{footerHeight}}px;"></view>
   </scroll-view>
 
-  <!-- 底部结算栏 - 移出scroll-view -->
+  <!-- 底部结算栏 -->
   <view wx:if="{{selectedDishes.length > 0}}" class="order-footer">
     <view class="total-info">
       <text class="total-count">共 {{totalCount}} 道菜</text>
@@ -42,30 +41,56 @@
     </button>
   </view>
 
-  <view wx:if="{{showNicknameModal}}" class="modal-mask">
-    <view class="modal-content">
+  <!-- 优化后的用户信息弹窗 -->
+  <view wx:if="{{showNicknameModal}}" class="modal-mask" bindtap="cancelUserInfo">
+    <view class="modal-content" catchtap="noop">
       <view class="modal-header">
-        <text>请完善用户信息</text>
+        <text class="modal-title">Who are you❓</text>
+        <text class="modal-subtitle">告诉梦猫人你是谁吧</text>
       </view>
+      
       <view class="modal-body">
-        <!-- 获取头像 -->
-        <view class="avatar-section">
-          <text>选择头像:</text>
-          <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
-            <image wx:if="{{avatarUrl}}" src="{{avatarUrl}}" class="avatar"></image>
-            <text wx:else class="avatar-placeholder">选择头像</text>
+        <!-- 头像选择区域 -->
+        <view class="form-section">
+          <text class="form-label">头像</text>
+          <button class="avatar-upload-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+            <view class="avatar-container">
+              <image wx:if="{{tempAvatarUrl}}" src="{{tempAvatarUrl}}" class="avatar-image"></image>
+              <view wx:else class="avatar-placeholder">
+                <text class="avatar-icon">👤</text>
+                <text class="avatar-text">点击选择</text>
+              </view>
+              <view class="avatar-overlay">
+                <text class="camera-icon">📷</text>
+              </view>
+            </view>
           </button>
         </view>
 
-        <!-- 获取昵称 -->
-        <view class="nickname-section">
-          <text>输入昵称:</text>
-          <input type="nickname" class="nickname-input" placeholder="请输入昵称" bindblur="onNicknameInput" />
+        <!-- 昵称输入区域 -->
+        <view class="form-section">
+          <text class="form-label">昵称</text>
+          <view class="input-container">
+            <input 
+              type="nickname" 
+              class="nickname-input" 
+              placeholder="请输入您的昵称" 
+              value="{{tempNickName}}"
+              bindinput="onNicknameInput"
+              placeholder-class="input-placeholder"
+            />
+            <view class="input-clear" wx:if="{{tempNickName}}" bindtap="clearNickname">
+              <text class="clear-icon">×</text>
+            </view>
+          </view>
         </view>
       </view>
+
       <view class="modal-footer">
-        <button class="confirm-btn" bindtap="confirmUserInfo">确认</button>
-        <button class="cancel-btn" bindtap="cancelUserInfo">取消</button>
+        <button class="btn-cancel" bindtap="cancelUserInfo">取消</button>
+        <button class="btn-confirm" bindtap="confirmUserInfo" disabled="{{!tempNickName || !tempAvatarUrl}}">
+          确认
+        </button>
       </view>
     </view>
   </view>
