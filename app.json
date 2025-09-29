@@ -25,7 +25,7 @@
       },
       {
         "pagePath": "pages/order/order",
-        "text": "订单",
+        "text": "想吃",
         "iconPath": "images/order.png",
         "selectedIconPath": "images/order-active.png"
       }
