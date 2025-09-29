@@ -1,0 +1,21 @@
+<!-- pages/result/result.wxml -->
+<view class="result-container">
+  <!-- 主要内容区域 -->
+  <view class="result-content">
+    <!-- 标题 -->
+    <view class="result-title">👩🏻‍🍳 食材采购中~ </view>
+    
+    <!-- 图片展示区域 -->
+    <view class="image-section">
+      <image src="/images/done.png" mode="aspectFit" class="result-image"></image>
+    </view>
+    
+    <!-- 文案区域 -->
+    <view class="result-text">敬请等待联系吧~</view>
+  </view>
+  
+  <!-- 返回主页按钮 -->
+  <view class="action-section">
+    <button class="back-home-btn" bindtap="backToHome">返回</button>
+  </view>
+</view>

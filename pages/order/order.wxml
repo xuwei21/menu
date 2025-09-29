@@ -46,7 +46,7 @@
     <view class="modal-content" catchtap="noop">
       <view class="modal-header">
         <text class="modal-title">Who are you❓</text>
-        <text class="modal-subtitle">告诉梦猫人主厨你是谁吧</text>
+        <text class="modal-subtitle">告诉梦猫人👩🏻‍🍳 你是谁吧</text>
       </view>
       
       <view class="modal-body">

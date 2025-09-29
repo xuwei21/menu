@@ -2,10 +2,11 @@
   "pages": [
     "pages/index/index",
     "pages/order/order",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/result/result"
   ],
   "window": {
-    "navigationBarTitleText": "梦猫人の私房菜",
+    "navigationBarTitleText": "梦猫人の私厨",
     "navigationBarBackgroundColor": "#FF6B6B",
     "navigationBarTextStyle": "white",
     "backgroundColor": "#FFF5F5"

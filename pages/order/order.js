@@ -106,15 +106,18 @@ Page({
 
   // 处理结算逻辑
   processCheckout: function () {
-    // 这里添加你的结算逻辑
     console.log('开始结算，用户昵称:', this.data.nickName)
     console.log('订单详情:', this.data.selectedDishes)
-    // const displayName = this.data.nickName === '微信用户' ? '用户' : this.data.nickName;
+    
+    // 跳转到结果页面
+    wx.navigateTo({
+      url: '/pages/result/result'
+    });
 
-    // 示例：跳转到确认订单页面
-    // wx.navigateTo({
-    //   url: '/pages/confirmOrder/confirmOrder?nickName=' + encodeURIComponent(this.data.nickName)
-    // })
+    // 清空已选菜品
+    const app = getApp();
+    app.globalData.selectedDishes = [];
+    app.saveSelectedDishes();
   },
 
   calculateScrollHeight() {
