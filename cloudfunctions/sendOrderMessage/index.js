@@ -22,7 +22,7 @@ exports.main = async (event, context) => {
         let dishesText =  Array.isArray(dishes) ? 
             dishes.map(dish => String(dish)) : [String(dishes)]
         dishesText = dishesText.join(' ')
-        
+
         if (dishesText.length > 20) {
             dishesText = dishesText.slice(0, 17) + '...'
         }
@@ -41,7 +41,7 @@ exports.main = async (event, context) => {
         const result = await cloud.openapi.subscribeMessage.send({
             touser: "o55Fz6zuMNKRX0ZSiQyF4E6CJU0Q", // 替换为商户的openid
             template_id: 'Mc7v-gaKZhLb1MiNg4huhSxpBPPbjGn_ag8cG7KwEbA',
-            //   page: 'pages/index/index', // 固定跳转到首页
+            page: 'pages/index/index', // 固定跳转到首页
             data: messageData
         })
 

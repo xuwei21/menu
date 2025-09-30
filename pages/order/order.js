@@ -107,11 +107,6 @@ Page({
   // 处理结算逻辑
   processCheckout: async function () {
     console.log('开始结算，用户昵称:', this.data.nickName)
-    // var orderSummary = `用户: ${this.data.nickName}\n菜品数: ${this.data.totalCount}\n\n订单详情:\n`;
-    // for (const dish of this.data.selectedDishes) {
-    //   orderSummary += `- ${dish.name} x ${dish.quantity}\n`;
-    // }
-    // console.log(orderSummary);
 
     var dishesList = this.data.selectedDishes.map(dish => `${dish.name.replace(/\·/g, '')}`);
     console.log('菜品列表:', dishesList);
@@ -119,8 +114,26 @@ Page({
     wx.showLoading({
       title: '提交中...',
     });
+    
     // 调用云函数发送订阅消息
     try {
+      const orderResult = await wx.cloud.callFunction({
+      name: 'createOrder',
+      data: {
+        nickName: this.data.nickName,
+        dishes: dishesList
+      }
+    });
+      if (!orderResult.result.success) {
+        wx.hideLoading();
+        wx.showToast({
+          title: 'Oops 订单提交失败~再试下呗',
+          icon: 'none'
+        });
+        return;
+      }
+      console.log('订单ID:', orderResult.result._id);
+
       const result = await wx.cloud.callFunction({
         name: 'sendOrderMessage',
         data: {
@@ -136,7 +149,7 @@ Page({
       } else {
         console.error('订阅消息发送失败:', result.result.error);
         wx.showToast({
-          title: 'Oops，通知发送失败~再试下呗',
+          title: 'Oops 通知发送失败~再试下呗',
           icon: 'none'
         });
         return;
@@ -144,7 +157,7 @@ Page({
     } catch (error) {
       console.error('发送订阅消息失败:', error);
       wx.showToast({
-          title: 'Oops，通知发送失败~再试下呗',
+          title: 'Oops 通知发送失败~再试下呗',
           icon: 'none'
         });
     }
