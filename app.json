@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/order/order",
     "pages/detail/detail",
-    "pages/result/result"
+    "pages/result/result",
+    "pages/orderlist/orderlist"
   ],
   "window": {
     "navigationBarTitleText": "梦猫人の私厨",

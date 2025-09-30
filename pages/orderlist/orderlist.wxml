@@ -1,0 +1,40 @@
+<!-- pages/order/orderlist.wxml -->
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="header">
+    <view class="title">点餐记录</view>
+  </view>
+
+  <!-- 订单列表 -->
+  <scroll-view class="order-list" scroll-y>
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{orders.length === 0}}">
+      <image class="empty-icon" src="/images/empty-order.png"></image>
+      <text class="empty-text">还没有点餐记录</text>
+      <text class="empty-desc">快去菜单页选择您想吃的菜品吧</text>
+      <navigator class="go-menu-btn" url="/pages/index/index" open-type="switchTab">
+        去点餐
+      </navigator>
+    </view>
+
+    <!-- 订单项 -->
+    <view class="order-item" wx:for="{{orders}}" wx:key="_id" data-order="{{item}}" bindtap="navigateToDetail">
+      <view class="order-header">
+        <view class="customer-name">{{item.name}}</view>
+        <view class="order-time">{{item.time}}</view>
+      </view>
+      
+      <view class="dishes-list">
+        <text class="dishes-label">菜品：</text>
+        <text class="dishes-names">{{item.dishes}}</text>
+      </view>
+      
+      <!-- <view class="order-footer">
+        <view class="status-badge {{'completed'}}">
+          查看详情
+        </view>
+        <view class="arrow-icon">›</view>
+      </view> -->
+    </view>
+  </scroll-view>
+</view>
