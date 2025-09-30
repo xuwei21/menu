@@ -9,6 +9,9 @@ App({
         env: 'cloud1-6g3eai443bef4bd0', // 替换为你的云环境ID
         traceUser: true
     })
+
+    this.getUserInfo();
+
     // 小程序启动时从缓存加载选中的菜品
     try {
       const storedDishes = wx.getStorageSync('selectedDishes');
@@ -27,6 +30,26 @@ App({
     } catch (e) {
       console.error('保存数据失败:', e);
     }
+  },
+
+    // 调用云函数的方法
+  getUserInfo: function () {
+    wx.cloud.callFunction({
+      name: 'get', // 云函数名称，对应你创建的云函数目录名
+      success: res => {
+        console.log('云函数调用成功', res)
+
+        // 打印各个ID
+        console.log('openid:', res.result.openid)
+        this.globalData.openid = res.result.openid;
+        // this.setData({
+        //   openid: res.result.openid,
+        // })
+      },
+      fail: err => {
+        console.error('云函数调用失败', err)
+      }
+    })
   },
 
   // 添加菜品到订单

@@ -37,7 +37,7 @@
       <text class="total-price">时间: {{totalPrice}} 🕐</text>
     </view>
     <button class="checkout-btn" bindtap="onCheckout" disabled="{{isGettingUserInfo}}">
-      {{isGettingUserInfo ? '获取用户信息中...' : '就这些吧 🍽️'}}
+      {{isGettingUserInfo ? '等待中...' : '就这些吧 🍽️'}}
     </button>
   </view>
 
