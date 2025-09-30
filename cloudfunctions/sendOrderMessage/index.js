@@ -41,7 +41,7 @@ exports.main = async (event, context) => {
         const result = await cloud.openapi.subscribeMessage.send({
             touser: "o55Fz6zuMNKRX0ZSiQyF4E6CJU0Q", // 替换为商户的openid
             template_id: 'Mc7v-gaKZhLb1MiNg4huhSxpBPPbjGn_ag8cG7KwEbA',
-            page: 'pages/index/index', // 固定跳转到首页
+            page: 'pages/orderlist/orderlist', // 固定跳转到订单管理页面
             data: messageData
         })
 
