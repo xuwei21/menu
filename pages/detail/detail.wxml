@@ -14,6 +14,6 @@
   <view class="info-section">
     <text class="dish-name">{{dish.name}}</text>
     <text class="dish-desc">{{dish.description}}</text>
-    <text class="dish-price">{{dish.price}} 💎</text>
+    <text class="dish-price">{{dish.price}} 🕐</text>
   </view>
 </view>

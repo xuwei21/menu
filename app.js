@@ -1,13 +1,19 @@
 // app.js
 App({
   globalData: {
-    selectedDishes: [] // 存储选中的菜品
+    selectedDishes: [], // 存储选中的菜品
+    openid: null,
+    // 配置商户信息
+    merchantConfig: {
+      openid: "o55Fz6zuMNKRX0ZSiQyF4E6CJU0Q", // 商户openid
+      hasSubscribed: false // 订阅状态
+    }
   },
 
   onLaunch() {
     wx.cloud.init({
-        env: 'cloud1-6g3eai443bef4bd0', // 替换为你的云环境ID
-        traceUser: true
+      env: 'cloud1-6g3eai443bef4bd0',
+      traceUser: true
     })
 
     this.getUserInfo();
@@ -17,6 +23,12 @@ App({
       const storedDishes = wx.getStorageSync('selectedDishes');
       if (storedDishes) {
         this.globalData.selectedDishes = storedDishes;
+      }
+      
+      // 加载订阅状态
+      const subscriptionStatus = wx.getStorageSync('merchantSubscription');
+      if (subscriptionStatus) {
+        this.globalData.merchantConfig.hasSubscribed = subscriptionStatus;
       }
     } catch (e) {
       console.error('加载缓存数据失败:', e);
@@ -32,24 +44,56 @@ App({
     }
   },
 
-    // 调用云函数的方法
+  // 保存订阅状态
+  saveSubscriptionStatus(status) {
+    try {
+      this.globalData.merchantConfig.hasSubscribed = status;
+      wx.setStorageSync('merchantSubscription', status);
+    } catch (e) {
+      console.error('保存订阅状态失败:', e);
+    }
+  },
+
+  // 调用云函数的方法
   getUserInfo: function () {
     wx.cloud.callFunction({
-      name: 'get', // 云函数名称，对应你创建的云函数目录名
+      name: 'get',
       success: res => {
         console.log('云函数调用成功', res)
-
-        // 打印各个ID
         console.log('openid:', res.result.openid)
+        
         this.globalData.openid = res.result.openid;
-        // this.setData({
-        //   openid: res.result.openid,
-        // })
+        
+        // 检查是否是商户且未订阅
+        if (this.isMerchantUser() && !this.globalData.merchantConfig.hasSubscribed) {
+          // 延迟触发订阅检查，确保页面已加载
+          setTimeout(() => {
+            this.triggerSubscriptionCheck();
+          }, 1000);
+        }
       },
       fail: err => {
         console.error('云函数调用失败', err)
       }
     })
+  },
+
+  // 检查是否是商户用户
+  isMerchantUser() {
+    return this.globalData.openid === this.globalData.merchantConfig.openid;
+  },
+
+  // 触发订阅检查
+  triggerSubscriptionCheck() {
+    // 通过全局事件或页面引用触发订阅弹窗
+    if (this.subscriptionCallback) {
+      this.subscriptionCallback();
+    }
+  },
+
+  // 注册订阅回调
+  onSubscriptionCheck(callback) {
+    this.subscriptionCallback = callback;
   },
 
   // 添加菜品到订单
@@ -58,10 +102,8 @@ App({
     const existingDishIndex = selectedDishes.findIndex(item => item.id === dish.id);
     
     if (existingDishIndex > -1) {
-      // 如果已存在，增加数量
       selectedDishes[existingDishIndex].quantity += 1;
     } else {
-      // 如果不存在，添加新菜品
       selectedDishes.push({
         ...dish,
         quantity: 1

@@ -143,7 +143,9 @@ Page({
       ]
     },
     currentCategory: 1,
-    currentDishes: []
+    currentDishes: [],
+    showSubscriptionModal: false, // 控制订阅弹窗显示
+    isMerchant: false // 是否是商户
   },
 
   onLoad() {
@@ -152,6 +154,16 @@ Page({
     this.setData({
       currentDishes: this.data.dishes[this.data.currentCategory]
     });
+    // 注册订阅检查回调
+    const app = getApp();
+    app.onSubscriptionCheck(() => {
+      this.checkAndShowSubscription();
+    });
+    
+    // 立即检查一次
+    setTimeout(() => {
+      this.checkAndShowSubscription();
+    }, 1500);
   },
 
   onShow() {
@@ -161,6 +173,81 @@ Page({
 
   onReady() {
     this.calculateScrollHeight();
+  },
+
+  checkAndShowSubscription() {
+    const app = getApp();
+    const isMerchant = app.isMerchantUser();
+    const hasSubscribed = app.globalData.merchantConfig.hasSubscribed;
+    
+    console.log('检查订阅状态:', { isMerchant, hasSubscribed });
+    
+    if (isMerchant && !hasSubscribed) {
+      this.setData({
+        showSubscriptionModal: true,
+        isMerchant: true
+      });
+    }
+  },
+
+    // 订阅消息
+  async subscribeMessage() {
+    try {
+      const result = await wx.requestSubscribeMessage({
+        tmplIds: ['Mc7v-gaKZhLb1MiNg4huhSxpBPPbjGn_ag8cG7KwEbA']
+      });
+
+      if (result['Mc7v-gaKZhLb1MiNg4huhSxpBPPbjGn_ag8cG7KwEbA'] === 'accept') {
+        // 订阅成功
+        const app = getApp();
+        app.saveSubscriptionStatus(true);
+        
+        wx.showToast({
+          title: '授权成功！',
+          icon: 'success',
+          duration: 2000
+        });
+        
+        this.closeSubscriptionModal();
+      } else {
+        // 用户拒绝
+        wx.showToast({
+          title: '您拒绝了授权',
+          icon: 'none',
+          duration: 2000
+        });
+        this.closeSubscriptionModal();
+      }
+    } catch (error) {
+      console.error('订阅失败:', error);
+      wx.showToast({
+        title: '授权失败',
+        icon: 'none'
+      });
+    }
+  },
+
+  // 关闭订阅弹窗
+  closeSubscriptionModal() {
+    this.setData({
+      showSubscriptionModal: false
+    });
+  },
+
+  // 稍后提醒
+  remindLater() {
+    const app = getApp();
+    // 设置24小时内不再提醒
+    const remindTime = Date.now() + 24 * 60 * 60 * 1000;
+    wx.setStorageSync('subscriptionRemindTime', remindTime);
+    
+    this.closeSubscriptionModal();
+    
+    wx.showToast({
+      title: '已设置稍后提醒',
+      icon: 'success',
+      duration: 1500
+    });
   },
 
   calculateScrollHeight() {

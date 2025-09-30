@@ -2,70 +2,107 @@
 <view class="container">
   <!-- 轮播图 -->
   <view class="banner-section">
-    <swiper 
-      indicator-dots="{{true}}" 
-      autoplay="{{true}}" 
-      interval="{{2000}}"
-      circular="{{true}}"
-      indicator-color="rgba(255,255,255,0.5)"
-      indicator-active-color="#FF6B6B"
-      class="banner-swiper">
+    <swiper indicator-dots="{{true}}" autoplay="{{true}}" interval="{{2000}}" circular="{{true}}"
+      indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#FF6B6B" class="banner-swiper">
       <swiper-item wx:for="{{banners}}" wx:key="id">
         <image src="{{item.image}}" mode="aspectFill" class="banner-image"></image>
       </swiper-item>
     </swiper>
   </view>
-  
+
   <!-- 内容区域 -->
   <view class="content-section">
     <!-- 左侧导航 -->
     <scroll-view scroll-y class="nav-section" style="height: {{scrollHeight}}px;">
-      <view 
-        wx:for="{{categories}}" 
-        wx:key="id"
-        class="nav-item {{currentCategory === item.id ? 'active' : ''}}"
-        bindtap="switchCategory"
-        data-id="{{item.id}}">
+      <view wx:for="{{categories}}" wx:key="id" class="nav-item {{currentCategory === item.id ? 'active' : ''}}"
+        bindtap="switchCategory" data-id="{{item.id}}">
         <text class="nav-icon">{{item.icon}}</text>
         <text class="nav-text">{{item.name}}</text>
       </view>
     </scroll-view>
-    
-<!-- 右侧菜品列表 -->
+
+    <!-- 右侧菜品列表 -->
     <scroll-view scroll-y class="dishes-section" style="height: {{scrollHeight}}px;">
       <view wx:if="{{currentDishes.length > 0}}" class="dishes-container">
-        <view 
-          wx:for="{{currentDishes}}" 
-          wx:key="id"
-          class="dish-item"
-          bindtap="goToDetail"
-          data-dish="{{item}}">
+        <view wx:for="{{currentDishes}}" wx:key="id" class="dish-item" bindtap="goToDetail" data-dish="{{item}}">
           <image src="{{item.image}}" mode="aspectFill" class="dish-image"></image>
           <view class="dish-info">
             <text class="dish-name">{{item.name}}</text>
             <text class="dish-desc">{{item.description}}</text>
-<!-- 修改价格区域部分 -->
-<view class="price-section">
-  <text class="dish-price">{{item.price}} 🕐</text>
-  <!-- 扩大按钮容器，增加点击区域 -->
-  <view class="btn-wrapper" catchtap="toggleDishSelection" data-dish="{{item}}">
-    <view class="add-btn {{item.selected ? 'selected' : ''}}">
-      <image 
-        class="btn-icon" 
-        src="{{item.selected ? '/images/done.png' : '/images/add.png'}}" 
-        mode="aspectFit">
-      </image>
-    </view>
-  </view>
-</view>
+            <!-- 修改价格区域部分 -->
+            <view class="price-section">
+              <text class="dish-price">{{item.price}} 🕐</text>
+              <!-- 扩大按钮容器，增加点击区域 -->
+              <view class="btn-wrapper" catchtap="toggleDishSelection" data-dish="{{item}}">
+                <view class="add-btn {{item.selected ? 'selected' : ''}}">
+                  <image class="btn-icon" src="{{item.selected ? '/images/done.png' : '/images/add.png'}}"
+                    mode="aspectFit">
+                  </image>
+                </view>
+              </view>
+            </view>
           </view>
         </view>
       </view>
-      
+
       <!-- 空状态 -->
       <view wx:else class="empty-state">
         <text class="empty-text">暂无菜品，敬请期待</text>
       </view>
     </scroll-view>
+  </view>
+
+  <!-- 在 pages/index/index.wxml 文件末尾添加 -->
+
+  <!-- 订阅消息授权弹窗 -->
+  <view class="subscription-modal" wx:if="{{showSubscriptionModal}}">
+    <view class="modal-mask" catchtap="closeSubscriptionModal"></view>
+    <view class="modal-content">
+      <!-- 弹窗头部 -->
+      <view class="modal-header">
+        <view class="modal-title">订单通知授权</view>
+        <view class="modal-subtitle">及时接收新订单提醒</view>
+      </view>
+
+      <!-- 弹窗内容 -->
+      <!-- <view class="modal-body">
+        <view class="feature-item">
+          <view class="feature-icon">🔔</view>
+          <view class="feature-text">
+            <view class="feature-title">实时通知</view>
+            <view class="feature-desc">顾客下单后立即收到微信通知</view>
+          </view>
+        </view>
+
+        <view class="feature-item">
+          <view class="feature-icon">⚡</view>
+          <view class="feature-text">
+            <view class="feature-title">快速响应</view>
+            <view class="feature-desc">及时处理订单，提升顾客满意度</view>
+          </view>
+        </view>
+
+        <view class="feature-item">
+          <view class="feature-icon">📱</view>
+          <view class="feature-text">
+            <view class="feature-title">便捷管理</view>
+            <view class="feature-desc">在微信中直接查看订单详情</view>
+          </view>
+        </view>
+      </view> -->
+
+      <!-- 弹窗底部按钮 -->
+      <view class="modal-footer">
+        <!-- <button class="btn-secondary" bindtap="remindLater">稍后提醒</button> -->
+        <button class="btn-primary" bindtap="subscribeMessage" open-type="subscribe">
+          立即授权
+        </button>
+      </view>
+
+      <!-- 关闭按钮 -->
+      <view class="close-btn" catchtap="closeSubscriptionModal">
+        <text class="close-icon">×</text>
+      </view>
+    </view>
   </view>
 </view>
