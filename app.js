@@ -5,7 +5,7 @@ App({
     openid: null,
     // 配置商户信息
     merchantConfig: {
-      openid: ["o55Fz6zuMNKRX0ZSiQyF4E6CJU0Q"], // 商户openid
+      openid: ["o55Fz6zuMNKRX0ZSiQyF4E6CJU0Q", "o55Fz61H8Gon1HKzG4HthDAQQFzY"], // 商户openid
       hasSubscribed: false // 订阅状态
     }
   },
