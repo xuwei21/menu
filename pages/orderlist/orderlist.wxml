@@ -9,18 +9,17 @@
   <scroll-view class="order-list" scroll-y>
     <!-- 空状态 -->
     <view class="empty-state" wx:if="{{orders.length === 0}}">
-      <image class="empty-icon" src="/images/empty-order.png"></image>
-      <text class="empty-text">还没有点餐记录</text>
-      <text class="empty-desc">快去菜单页选择您想吃的菜品吧</text>
-      <navigator class="go-menu-btn" url="/pages/index/index" open-type="switchTab">
+      <text class="empty-text">没有点餐记录</text>
+      <text class="empty-desc">约好友来吃饭吧</text>
+      <!-- <navigator class="go-menu-btn" url="/pages/index/index" open-type="switchTab">
         去点餐
-      </navigator>
+      </navigator> -->
     </view>
 
     <!-- 订单项 -->
     <view class="order-item" wx:for="{{orders}}" wx:key="_id" data-order="{{item}}" bindtap="navigateToDetail">
       <view class="order-header">
-        <view class="customer-name">{{item.name}}</view>
+        <view class="customer-name">{{item.nickName}}</view>
         <view class="order-time">{{item.time}}</view>
       </view>
       
@@ -30,8 +29,8 @@
       </view>
       
       <!-- <view class="order-footer">
-        <view class="status-badge {{'completed'}}">
-          查看详情
+        <view class="status-badge {{item.status || 'pending'}}">
+          {{item.status === 'completed' ? '已完成' : '待处理'}}
         </view>
         <view class="arrow-icon">›</view>
       </view> -->

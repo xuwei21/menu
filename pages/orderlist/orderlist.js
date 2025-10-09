@@ -1,7 +1,11 @@
 // pages/order/orderlist.js
 Page({
   data: {
-    orders: []
+    orders: [],
+    loading: true,
+    hasMore: true,
+    page: 1,
+    pageSize: 10
   },
 
   onLoad() {
@@ -9,42 +13,99 @@ Page({
   },
 
   onShow() {
+    // 重新加载订单，确保数据最新
+    this.setData({ 
+      page: 1,
+      orders: [],
+      hasMore: true 
+    });
     this.loadOrders();
   },
 
-  loadOrders() {
-    // 模拟订单数据
-    const orders = [
-      {
-        "_id": "order1",
-        "name": "梦猫人",
-        "dishes": ["红烧肉", "清炒时蔬", "番茄鸡蛋汤"],
-        "time": "2025-09-30 17:30",
-        "status": "pending"
-      },
-      {
-        "_id": "order2", 
-        "name": "小猫咪",
-        "dishes": ["糖醋里脊", "麻婆豆腐"],
-        "time": "2025-09-29 12:15",
-        "status": "completed"
-      },
-      {
-        "_id": "order3",
-        "name": "美食家",
-        "dishes": ["宫保鸡丁", "酸辣土豆丝", "紫菜蛋花汤", "米饭", "宫保鸡丁", "酸辣土豆丝", "紫菜蛋花汤", "米饭"],
-        "time": "2025-09-28 19:45",
-        "status": "completed"
+  onPullDownRefresh() {
+    // 下拉刷新
+    this.setData({ 
+      page: 1,
+      orders: [],
+      hasMore: true 
+    });
+    this.loadOrders().then(() => {
+      wx.stopPullDownRefresh();
+    });
+  },
+
+  onReachBottom() {
+    // 上拉加载更多
+    if (this.data.hasMore && !this.data.loading) {
+      this.loadOrders(true);
+    }
+  },
+
+  async loadOrders(isLoadMore = false) {
+
+    // if (this.data.loading) return;
+    console.log('开始调用云函数 getOrders...');
+    this.setData({ loading: true });
+
+    try {
+      // 调用云函数获取订单数据
+      const result = await wx.cloud.callFunction({
+        name: 'getOrders', // 确保云函数名称正确
+        data: {_id: null}
+      });
+
+      console.log('获取订单结果：', result);
+
+      if (result.result.success) {
+        const newOrders = result.result.data || [];
+        
+        if (isLoadMore) {
+          // 加载更多
+          const allOrders = this.data.orders.concat(newOrders);
+          this.setData({ 
+            orders: allOrders,
+            page: this.data.page + 1,
+            hasMore: newOrders.length === this.data.pageSize // 判断是否还有更多数据
+          });
+        } else {
+          // 刷新或首次加载
+          this.setData({ 
+            orders: newOrders,
+            page: 2, // 第一次加载后，下一页是第2页
+            hasMore: newOrders.length === this.data.pageSize
+          });
+        }
+      } else {
+        wx.showToast({
+          title: '获取订单失败',
+          icon: 'none'
+        });
       }
-    ];
-    
-    this.setData({ orders });
+    } catch (error) {
+      console.error('调用云函数失败：', error);
+      wx.showToast({
+        title: '网络错误，请重试',
+        icon: 'none'
+      });
+    } finally {
+      this.setData({ loading: false });
+    }
   },
 
   navigateToDetail(e) {
     const order = e.currentTarget.dataset.order;
-    // wx.navigateTo({
-    //   url: `/pages/detail/detail?order=${encodeURIComponent(JSON.stringify(order))}`
-    // });
+    wx.navigateTo({
+      url: `/pages/order/orderDetail?orderId=${order._id}`
+    });
+  },
+
+  // 重新加载订单
+  onRetry() {
+    this.setData({ 
+      page: 1,
+      orders: [],
+      hasMore: true 
+    });
+    this.loadOrders();
   }
 });
