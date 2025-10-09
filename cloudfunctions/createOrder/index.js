@@ -35,14 +35,16 @@ exports.main = async (event, context) => {
     }
   }
 
-  function formatDateTime(date = new Date()) {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
+    function formatDateTime(date = new Date()) {
+        const beijingTime = new Date(date.getTime() + 8 * 60 * 60 * 1000);
     
-    return `${year}-${month}-${day} ${hours}:${minutes}`;
+        const year = beijingTime.getUTCFullYear();
+        const month = String(beijingTime.getUTCMonth() + 1).padStart(2, '0');
+        const day = String(beijingTime.getUTCDate()).padStart(2, '0');
+        const hours = String(beijingTime.getUTCHours()).padStart(2, '0');
+        const minutes = String(beijingTime.getUTCMinutes()).padStart(2, '0');
+        
+        return `${year}-${month}-${day} ${hours}:${minutes}`;
     }
 
 }

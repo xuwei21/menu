@@ -22,8 +22,8 @@
     <!-- 空状态 -->
     <view wx:else class="empty-order">
       <view class="empty-icon">📋</view>
-      <text class="empty-text">还没有选择菜品</text>
-      <button class="order-btn" bindtap="goToMenu">立即点单</button>
+      <text class="empty-text">🍔 🍕 🍜 🍤 🍰</text>
+      <button class="order-btn" bindtap="goToMenu">看看菜单吧</button>
     </view>
 
     <!-- 添加底部占位，防止内容被底部栏遮挡 -->
@@ -37,7 +37,7 @@
       <text class="total-price">时间: {{totalPrice}} 🕐</text>
     </view>
     <button class="checkout-btn" bindtap="onCheckout" disabled="{{isGettingUserInfo}}">
-      {{isGettingUserInfo ? '等待中...' : '就这些吧 🍽️'}}
+      {{isGettingUserInfo ? '等待中...' : '告诉梦猫人吧 🍽️'}}
     </button>
   </view>
 
@@ -88,7 +88,7 @@
 
       <view class="modal-footer">
         <button class="btn-cancel" bindtap="cancelUserInfo">取消</button>
-        <button class="btn-confirm" bindtap="confirmUserInfo" disabled="{{!tempNickName || !tempAvatarUrl}}">
+        <button class="btn-confirm" bindtap="confirmUserInfo" disabled="{{!tempNickName }}">
           确认
         </button>
       </view>

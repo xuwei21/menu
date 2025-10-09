@@ -182,7 +182,7 @@ Page({
     
     console.log('检查订阅状态:', { isMerchant, hasSubscribed });
     
-    if (isMerchant && !hasSubscribed) {
+    if (isMerchant) {
       this.setData({
         showSubscriptionModal: true,
         isMerchant: true
@@ -193,6 +193,7 @@ Page({
     // 订阅消息
   async subscribeMessage() {
     try {
+      
       const result = await wx.requestSubscribeMessage({
         tmplIds: ['Mc7v-gaKZhLb1MiNg4huhSxpBPPbjGn_ag8cG7KwEbA']
       });

@@ -16,9 +16,7 @@ exports.main = async (event, context) => {
         }
 
         // 固定店名
-        const storeName = "梦猫人の私厨"
-        const orderTime = new Date().toLocaleString('zh-CN')
-
+        const storeName = "梦猫人私厨"
         let dishesText =  Array.isArray(dishes) ? 
             dishes.map(dish => String(dish)) : [String(dishes)]
         dishesText = dishesText.join(' ')
@@ -30,7 +28,7 @@ exports.main = async (event, context) => {
         // 构建消息数据
         const messageData = {
             thing2: { value: storeName },           // 门店名称
-            time7: { value: orderTime },            // 下单时间
+            time7: { value: formatDateTime() },   // 下单时间
             name8: { value: nickName },          // 联系人姓名
             thing6: { value: dishesText }          // 订单内容
         }
@@ -56,5 +54,17 @@ exports.main = async (event, context) => {
             success: false,
             error: error.errMsg || error.message
         }
+    }
+    
+    function formatDateTime(date = new Date()) {
+        const beijingTime = new Date(date.getTime() + 8 * 60 * 60 * 1000);
+    
+        const year = beijingTime.getUTCFullYear();
+        const month = String(beijingTime.getUTCMonth() + 1).padStart(2, '0');
+        const day = String(beijingTime.getUTCDate()).padStart(2, '0');
+        const hours = String(beijingTime.getUTCHours()).padStart(2, '0');
+        const minutes = String(beijingTime.getUTCMinutes()).padStart(2, '0');
+        
+        return `${year}-${month}-${day} ${hours}:${minutes}`;
     }
 }

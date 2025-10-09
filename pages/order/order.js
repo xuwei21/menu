@@ -127,7 +127,7 @@ Page({
       if (!orderResult.result.success) {
         wx.hideLoading();
         wx.showToast({
-          title: 'Oops 订单提交失败~再试下呗',
+          title: '啊哦 订单提交失败~ 再试下呗',
           icon: 'none'
         });
         return;
@@ -149,7 +149,7 @@ Page({
       } else {
         console.error('订阅消息发送失败:', result.result.error);
         wx.showToast({
-          title: 'Oops 通知发送失败~再试下呗',
+          title: '啊哦 通知发送失败~ 再试下呗',
           icon: 'none'
         });
         return;

@@ -5,7 +5,7 @@ App({
     openid: null,
     // 配置商户信息
     merchantConfig: {
-      openid: "o55Fz6zuMNKRX0ZSiQyF4E6CJU0Q", // 商户openid
+      openid: ["o55Fz6zuMNKRX0ZSiQyF4E6CJU0Q"], // 商户openid
       hasSubscribed: false // 订阅状态
     }
   },
@@ -65,7 +65,8 @@ App({
         this.globalData.openid = res.result.openid;
         
         // 检查是否是商户且未订阅
-        if (this.isMerchantUser() && !this.globalData.merchantConfig.hasSubscribed) {
+        if (this.isMerchantUser() ) {
+          console.log('isMerchantUser');
           // 延迟触发订阅检查，确保页面已加载
           setTimeout(() => {
             this.triggerSubscriptionCheck();
@@ -80,7 +81,7 @@ App({
 
   // 检查是否是商户用户
   isMerchantUser() {
-    return this.globalData.openid === this.globalData.merchantConfig.openid;
+    return this.globalData.merchantConfig.openid.includes(this.globalData.openid);
   },
 
   // 触发订阅检查
