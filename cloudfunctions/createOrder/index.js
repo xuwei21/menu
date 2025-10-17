@@ -19,6 +19,7 @@ exports.main = async (event, context) => {
       data: {
         nickName,
         dishes,
+        status: 'pending', // 默认状态为待处理
         time: formatDateTime(), // 服务端时间
       }
     })
