@@ -55,14 +55,6 @@
   padding: 0 40rpx;
 }
 
-.empty-icon {
-  width: 240rpx;
-  height: 240rpx;
-  margin-bottom: 50rpx;
-  opacity: 0.7;
-  filter: grayscale(0.3);
-}
-
 .empty-text {
   font-size: 36rpx;
   color: #666;
@@ -77,37 +69,33 @@
   line-height: 1.6;
 }
 
-.go-menu-btn {
-  background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
-  color: white;
-  padding: 24rpx 60rpx;
-  border-radius: 50rpx;
-  font-size: 30rpx;
-  font-weight: 600;
-  box-shadow: 0 12rpx 32rpx rgba(255, 107, 107, 0.4);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+/* 加载状态 */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200rpx;
 }
 
-.go-menu-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.5s;
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid #f3f3f3;
+  border-top: 4rpx solid #FF6B6B;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20rpx;
 }
 
-.go-menu-btn:active::before {
-  left: 100%;
+.loading-text {
+  font-size: 28rpx;
+  color: #999;
 }
 
-.go-menu-btn:active {
-  transform: translateY(2rpx);
-  box-shadow: 0 6rpx 20rpx rgba(255, 107, 107, 0.4);
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* 订单项样式 */
@@ -176,7 +164,7 @@
 .dishes-list {
   display: flex;
   align-items: flex-start;
-  margin-bottom: 10rpx;
+  margin-bottom: 30rpx;
 }
 
 .dishes-label {
@@ -197,6 +185,69 @@
   line-height: 1.6;
   flex: 1;
   word-break: break-all;
+}
+
+/* 订单底部样式 */
+.order-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24rpx;
+  border-top: 2rpx solid #F8F8F8;
+}
+
+.status-section {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.status-badge {
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+  margin-right: 16rpx;
+  min-width: 80rpx;
+  text-align: center;
+}
+
+.status-badge.pending {
+  background: linear-gradient(135deg, #FFE58F 0%, #FFC53D 100%);
+  color: #D46B08;
+  box-shadow: 0 4rpx 16rpx rgba(255, 197, 61, 0.3);
+}
+
+.status-badge.completed {
+  background: linear-gradient(135deg, #B7EB8F 0%, #73D13D 100%);
+  color: #389E0D;
+  box-shadow: 0 4rpx 16rpx rgba(115, 209, 61, 0.3);
+}
+
+.status-text {
+  font-size: 26rpx;
+  color: #666;
+  font-weight: 500;
+}
+
+.switch-section {
+  flex-shrink: 0;
+}
+
+.status-switch {
+  transform: scale(0.8);
+  transform-origin: right center;
+}
+
+/* 加载更多 */
+.load-more {
+  text-align: center;
+  padding: 40rpx 0;
+}
+
+.load-more-text {
+  font-size: 26rpx;
+  color: #999;
 }
 
 /* 加载动画 */
@@ -244,6 +295,16 @@
   .customer-name {
     font-size: 32rpx;
   }
+  
+  .order-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20rpx;
+  }
+  
+  .switch-section {
+    align-self: flex-end;
+  }
 }
 
 /* 暗色模式支持 */
@@ -271,5 +332,17 @@
   
   .empty-desc {
     color: #999;
+  }
+  
+  .order-header {
+    border-bottom-color: #3d3d3d;
+  }
+  
+  .order-footer {
+    border-top-color: #3d3d3d;
+  }
+  
+  .status-text {
+    color: #ccc;
   }
 }

@@ -91,6 +91,63 @@ Page({
       this.setData({ loading: false });
     }
   },
+  
+    // 状态切换事件
+  async onStatusChange(e) {
+    const { order, index } = e.currentTarget.dataset;
+    const newStatus = e.detail.value ? 'completed' : 'pending';
+    console.log('切换订单状态：', order._id, '新状态：', newStatus);
+    if (order.status === newStatus) {
+      return; // 状态未改变，不做处理
+    }
+
+    // 显示加载提示
+    wx.showLoading({
+      title: '更新中...',
+      mask: true
+    });
+
+    try {
+      // 调用云函数更新订单状态
+      const result = await wx.cloud.callFunction({
+        name: 'updateOrder',
+        data: {
+          _id: order._id,
+          status: newStatus
+        }
+      });
+
+      if (result.result.success) {
+        // 更新本地数据
+        const updateKey = `orders[${index}].status`;
+        this.setData({
+          [updateKey]: newStatus
+        });
+        
+        wx.showToast({
+          title: '状态更新成功',
+          icon: 'success'
+        });
+      } else {
+        throw new Error(result.result.message || '更新失败');
+      }
+    } catch (error) {
+      console.error('更新订单状态失败：', error);
+      
+      // 恢复switch状态
+      const resetKey = `orders[${index}].status`;
+      this.setData({
+        [resetKey]: order.status
+      });
+      
+      wx.showToast({
+        title: '更新失败，请重试',
+        icon: 'none'
+      });
+    } finally {
+      wx.hideLoading();
+    }
+  },
 
   navigateToDetail(e) {
     const order = e.currentTarget.dataset.order;

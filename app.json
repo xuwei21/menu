@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/orderlist/orderlist",
     "pages/index/index",
     "pages/order/order",
     "pages/detail/detail",
-    "pages/result/result",
-    "pages/orderlist/orderlist"
+    "pages/result/result"
   ],
   "window": {
     "navigationBarTitleText": "梦猫人の私厨",
