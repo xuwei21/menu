@@ -213,15 +213,14 @@
 }
 
 .status-badge.pending {
-  background: linear-gradient(135deg, #FFE58F 0%, #FFC53D 100%);
-  color: #D46B08;
-  box-shadow: 0 4rpx 16rpx rgba(255, 197, 61, 0.3);
+  background: linear-gradient(135deg, #FFE8BF 0%, #FFA940 100%);
+  color: #8C5000;
+  box-shadow: 0 4rpx 16rpx rgba(255, 169, 64, 0.3);
 }
-
 .status-badge.completed {
-  background: linear-gradient(135deg, #B7EB8F 0%, #73D13D 100%);
-  color: #389E0D;
-  box-shadow: 0 4rpx 16rpx rgba(115, 209, 61, 0.3);
+  background: linear-gradient(135deg, #E3FCEC 0%, #2BCB6B 100%);
+  color: #176C3A;
+  box-shadow: 0 4rpx 16rpx rgba(43, 203, 107, 0.3);
 }
 
 .status-text {
