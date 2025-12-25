@@ -30,6 +30,11 @@ function processDataInCloud(menuData) {
   const banners = [];
 
   menuData.forEach(item => {
+
+    if (item.hide === true) {
+      return; // 跳过当前 item
+    }
+    
     const dishItem = {
       id: item._id,
       name: item.name,
